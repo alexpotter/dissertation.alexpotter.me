@@ -15,6 +15,7 @@ class FrontendController extends Controller
      */
     public function index()
     {
+        // Index will need to be changed to patient name for look up.
         return view('frontend/index');
     }
 }
