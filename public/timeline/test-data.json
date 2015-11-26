@@ -15,6 +15,12 @@
                 "headline": "<i class='fa fa-fort-awesome'></i> Patient was born",
                 "text": "Patient was born in DGH"
             },
+            "media": {
+                "caption": "Twain caricatured by Spy for Vanity Fair, 1908",
+                "credit": "Vanity Fair",
+                "url": "http://knightlab.northwestern.edu/wp-content/uploads/2013/03/Northwestern_University_KnightLab_Logo1.png",
+                "thumb": 	"http://knightlab.northwestern.edu/wp-content/uploads/2013/03/Northwestern_University_KnightLab_Logo1.png"
+            },
             "unique_id": "22"
         },
         {
