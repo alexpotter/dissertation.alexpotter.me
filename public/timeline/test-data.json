@@ -2,7 +2,7 @@
     "events": [
         {
             "start_date": {
-                "year":			"1940",
+                "year":			"1980",
                 "month":		"01",
                 "day": 			"21",
                 "hour": 		"10",
@@ -18,7 +18,7 @@
         },
         {
             "start_date": {
-                "year":			"1980",
+                "year":			"2010",
                 "month":		"06",
                 "day": 			"29",
                 "hour": 		"09",
@@ -36,7 +36,7 @@
         },
         {
             "start_date": {
-                "year":			"1980",
+                "year":			"2010",
                 "month":		"06",
                 "day": 			"30",
                 "hour": 		"11",
@@ -52,7 +52,7 @@
         },
         {
             "start_date": {
-                "year":			"1980",
+                "year":			"2010",
                 "month":		"07",
                 "day": 			"01",
                 "hour": 		"11",
@@ -68,7 +68,7 @@
         },
         {
             "start_date": {
-                "year":			"1980",
+                "year":			"2010",
                 "month":		"07",
                 "day": 			"04",
                 "hour": 		"11",
@@ -84,7 +84,7 @@
         },
         {
             "start_date": {
-                "year":			"1980",
+                "year":			"2010",
                 "month":		"07",
                 "day": 			"05",
                 "hour": 		"11",
@@ -100,7 +100,7 @@
         },
         {
             "start_date": {
-                "year":			"1980",
+                "year":			"2010",
                 "month":		"07",
                 "day": 			"06",
                 "hour": 		"11",
@@ -113,6 +113,38 @@
             },
             "unique_id": "50",
             "group": "Check Up"
+        },
+        {
+            "start_date": {
+                "year":			"2010",
+                "month":		"08",
+                "day": 			"06",
+                "hour": 		"11",
+                "minute": 		"20",
+                "second": 		"00"
+            },
+            "text": {
+                "headline": "<i class='fa fa-bell blue'></i> Radiology",
+                "text": "First radiology"
+            },
+            "unique_id": "55",
+            "group": "Radiology"
+        },
+        {
+            "start_date": {
+                "year":			"2010",
+                "month":		"08",
+                "day": 			"07",
+                "hour": 		"11",
+                "minute": 		"20",
+                "second": 		"00"
+            },
+            "text": {
+                "headline": "<i class='fa fa-bell blue'></i> Radiology",
+                "text": "Second radiology"
+            },
+            "unique_id": "56",
+            "group": "Radiology"
         }
     ]
 }
