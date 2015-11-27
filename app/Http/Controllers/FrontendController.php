@@ -32,8 +32,8 @@ class FrontendController extends Controller
                         'minute'    => '20',
                     ),
                     'text' => array(
-                        'headline'  => '<i class="fa fa-square green"></i> Birth',
-                        'text'      => 'Patient was born in DGH. <br>Notes here <a href="#" target="_blank">Foo</a>'
+                        'headline'  => '<i class=\'fa fa-square green\'></i> Birth',
+                        'text'      => 'Patient was born in DGH. <br>Notes here <a href=\'#\' target=\'_blank\'>Foo</a>'
                     ),
                     'unique_id' => '22',
                     'group'     => 'Miscellaneous'
@@ -47,8 +47,8 @@ class FrontendController extends Controller
                         'minute'    => '20',
                     ),
                     'text' => array(
-                        'headline'  => '<i class="fa fa-square green"></i> Foo',
-                        'text'      => 'Patient was born in DGH. <br>Notes here <a href="#" target="_blank">Foo</a>'
+                        'headline'  => '<i class=\'fa fa-square green\'></i> Birth',
+                        'text'      => 'Patient was born in DGH. <br>Notes here <a href=\'#\' target=\'_blank\'>Foo</a>'
                     ),
                     'unique_id' => '23',
                     'group'     => 'Foo'
