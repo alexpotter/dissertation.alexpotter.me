@@ -83,15 +83,15 @@
         language:                   "en"
     };
 
-    // Will need to make a post or at least add patient ID to get particular patient record
-    $.get( "{{ url('timeline/test-data.json') }}", function( data ) {
-        var timeline = new TL.Timeline('timeLine', data, options);
-        window.onresize = function(event) {
-            timeline.updateDisplay();
-        }
+    $(function() {
+        // Will need to make a post or at least add patient ID to get particular patient record
+        $.get( "{{ url('timeline/test-data.json') }}", function( data ) {
+            var timeline = new TL.Timeline('timeLine', data, options);
+            window.onresize = function(event) {
+                timeline.updateDisplay();
+            }
+        });
     });
-
-
 </script>
 </body>
 </html>
