@@ -63,7 +63,7 @@
         timenav_height:             300,
         timenav_height_percentage:  30,             // Overrides timenav height as a percentage of the screen
         timenav_height_min:         300,            // Minimum timenav height
-        marker_height_min:          30,             // Minimum Marker Height
+        marker_height_min:          50,             // Minimum Marker Height
         marker_width_min:           40,            // Minimum Marker Width
         marker_padding:             10,              // Top Bottom Marker Padding
         start_at_slide:             0,
