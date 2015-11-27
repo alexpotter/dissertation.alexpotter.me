@@ -7,21 +7,14 @@
                 "day": 			"21",
                 "hour": 		"10",
                 "minute": 		"20",
-                "second": 		"00",
-                "millisecond": 	"",
-                "format": 		""
+                "second": 		"00"
             },
             "text": {
-                "headline": "<i class='fa fa-fort-awesome'></i> Patient was born",
-                "text": "Patient was born in DGH"
+                "headline": "<i class='fa fa-square green'></i> Birth",
+                "text": "Patient was born in DGH. <br>Notes here <a href='#' target='_blank'>Foo</a>"
             },
-            "media": {
-                "caption": "Twain caricatured by Spy for Vanity Fair, 1908",
-                "credit": "Vanity Fair",
-                "url": "http://knightlab.northwestern.edu/wp-content/uploads/2013/03/Northwestern_University_KnightLab_Logo1.png",
-                "thumb": 	"http://knightlab.northwestern.edu/wp-content/uploads/2013/03/Northwestern_University_KnightLab_Logo1.png"
-            },
-            "unique_id": "22"
+            "unique_id": "22",
+            "group": "Miscellaneous"
         },
         {
             "start_date": {
@@ -35,10 +28,11 @@
                 "format": 		""
             },
             "text": {
-                "headline": "<i class='fa fa-battery-half'></i> Patient came in for cancer check",
+                "headline": "<i class='fa fa-exclamation-triangle orange'></i> Check up",
                 "text": "Patient was found to have cancer within the left nymph"
             },
-            "unique_id": "33"
+            "unique_id": "33",
+            "group": "Check Up"
         },
         {
             "start_date": {
@@ -47,15 +41,14 @@
                 "day": 			"30",
                 "hour": 		"11",
                 "minute": 		"20",
-                "second": 		"00",
-                "millisecond": 	"",
-                "format": 		""
+                "second": 		"00"
             },
             "text": {
-                "headline": "<i class='fa fa-calendar-check-o'></i> Surgery",
+                "headline": "<i class='fa fa-circle red'></i> Surgery",
                 "text": "Patient was found to have cancer within the left nymph"
             },
-            "unique_id": "33"
+            "unique_id": "34",
+            "group": "Surgery"
         },
         {
             "start_date": {
@@ -64,15 +57,62 @@
                 "day": 			"01",
                 "hour": 		"11",
                 "minute": 		"20",
-                "second": 		"00",
-                "millisecond": 	"",
-                "format": 		""
+                "second": 		"00"
             },
             "text": {
-                "headline": "<i class='fa fa-calendar-check-o'></i> Surgery",
+                "headline": "<i class='fa fa-circle red'></i> Surgery",
                 "text": "Patient was found to have cancer within the left nymph"
             },
-            "unique_id": "44"
+            "unique_id": "44",
+            "group": "Surgery"
+        },
+        {
+            "start_date": {
+                "year":			"1980",
+                "month":		"07",
+                "day": 			"04",
+                "hour": 		"11",
+                "minute": 		"20",
+                "second": 		"00"
+            },
+            "text": {
+                "headline": "<i class='fa fa-exclamation-triangle orange'></i> Check up",
+                "text": "Post surgery check up, all was found to be okay"
+            },
+            "unique_id": "46",
+            "group": "Check Up"
+        },
+        {
+            "start_date": {
+                "year":			"1980",
+                "month":		"07",
+                "day": 			"05",
+                "hour": 		"11",
+                "minute": 		"20",
+                "second": 		"00"
+            },
+            "text": {
+                "headline": "<i class='fa fa-exclamation-triangle orange'></i> Check up",
+                "text": "Post surgery check up, all was found to be okay"
+            },
+            "unique_id": "48",
+            "group": "Check Up"
+        },
+        {
+            "start_date": {
+                "year":			"1980",
+                "month":		"07",
+                "day": 			"06",
+                "hour": 		"11",
+                "minute": 		"20",
+                "second": 		"00"
+            },
+            "text": {
+                "headline": "<i class='fa fa-exclamation-triangle orange'></i> Check up",
+                "text": "Post surgery check up, all was found to be okay"
+            },
+            "unique_id": "50",
+            "group": "Check Up"
         }
     ]
 }

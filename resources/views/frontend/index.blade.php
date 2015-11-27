@@ -11,6 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- CSS-->
     <link rel="stylesheet" href="{{ url('timeline/css/timeline.css') }}">
+    <link rel="stylesheet" href="{{ url('dist/frontend/css/timeline.css') }}">
     <!-- Style-->
     <style>
         html, body {
@@ -19,9 +20,17 @@
             padding: 0px;
             margin: 0px;
         }
+        #patient_data {
+            height: 300px;
+            display: block;
+            position: relative;
+        }
         #timeLine {
             height:600px;
             width:100%;
+            display: block;
+            position: relative;
+            float: left;
         }
 
 
@@ -34,17 +43,23 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>
 <body>
+<div id="patient_data">
+    <h1 style="text-align: center">Patient Data here</h1>
+</div>
 <div id="timeLine"></div>
 <!-- JavaScript-->
 <script src="{{ url('timeline/js/timeline.js') }}"></script>
 <script>
     options = {
         script_path:                "",
-        height:                     400,
+        default_bg_color:           "e0e0e0",
+        hash_bookmark:              true,
+        scale_factor:               20,
+        height:                     600,
         layout:                     "landscape",    // portrait or landscape
         timenav_position:           "bottom",       // timeline on top or bottom
-        optimal_tick_width:         30,            // optimal distance (in pixels) between ticks on axis
-        base_class:                 "",
+        optimal_tick_width:         50,            // optimal distance (in pixels) between ticks on axis
+        base_class:                 "time-line-override",
         timenav_height:             300,
         timenav_height_percentage:  30,             // Overrides timenav height as a percentage of the screen
         timenav_height_min:         300,            // Minimum timenav height
