@@ -91,6 +91,21 @@
                 timeline.updateDisplay();
             }
         });
+
+        $.ajax({
+            type: "POST",
+            url: '{{ url('patient/get/records') }}',
+            data: {
+                _token: '{{ csrf_token() }}'
+            },
+            dataType: 'json'
+        })
+                .done(function(data) {
+                    console.log(data);
+                })
+                .fail(function(jqXHR, status, thrownError) {
+                    console.log(jQuery.parseJSON(jqXHR.responseText));
+                });
     });
 </script>
 </body>
