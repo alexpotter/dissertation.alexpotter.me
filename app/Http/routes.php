@@ -13,9 +13,13 @@
 
 Route::get('/', 'FrontendController@index');
 Route::get('/patient/{id}', 'FrontendController@patient');
+Route::get('/patient/search', function() {
+    abort(404, 'Page not found');
+});
 Route::get('/patient/get/records', function() {
     abort(404, 'Page not found');
 });
 
 // Maybe set records to route through a login page should enough time remain
+Route::post('/patient/search', 'FrontendController@searchPatient');
 Route::post('/patient/get/records/', 'FrontendController@getRecords');

@@ -63,6 +63,18 @@ class FrontendController extends Controller
         // This will be used to return patient data
         // The id here will be inserted into the template to post to the above function
         // That will then be rendered onto the patients page
-        return $id;
+        return view('frontend/patient/record', array(
+            'patientId' => $id
+        ));
+    }
+
+    public function searchPatient(Request $request)
+    {
+        // If many patients return many as JSON
+        // If one patient return redirect
+        // Else return 400
+        return response(json_encode(array(
+            'url' => url('patient/'.$request->input('patientName'))
+        )), 200, array('application/json'));
     }
 }
