@@ -73,8 +73,17 @@ class FrontendController extends Controller
         // If many patients return many as JSON
         // If one patient return redirect
         // Else return 400
-        return response(json_encode(array(
-            'url' => url('patient/'.$request->input('patientName'))
-        )), 200, array('application/json'));
+        if ($request->input('patientName') == 'bad') {
+            return response(json_encode(array(
+                'status' => 'fail',
+                'msg' => 'No patients exists'
+            )), 400, array('application/json'));
+        }
+        else {
+            return response(json_encode(array(
+                'url' => url('patient/'.$request->input('patientName')),
+                'status' => 'success'
+            )), 200, array('application/json'));
+        }
     }
 }

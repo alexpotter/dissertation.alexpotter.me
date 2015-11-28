@@ -34,7 +34,7 @@
 <div id="search">
     <button type="button" class="close">×</button>
     <form id="patientSearchForm" name="patientSearch" method="post" action="{{ url('/patient/search') }}">
-        <input name="patientName" id="patientName" type="search" value="" placeholder="Patient name..." />
+        <input name="patientName" id="patientName" type="search" value="" placeholder="Patient name..." autocomplete="off">
         <button type="submit" class="btn btn-primary">Search</button>
     </form>
 </div>
@@ -70,7 +70,8 @@
                         window.location.href = data.url;
                     })
                     .fail(function(jqXHR, status, thrownError) {
-                        console.log(jQuery.parseJSON(jqXHR.responseText));
+                        var response = (jQuery.parseJSON(jqXHR.responseText));
+                        alert(response.msg);
                     });
         })
     });
