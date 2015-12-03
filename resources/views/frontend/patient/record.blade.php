@@ -55,7 +55,21 @@
         script_path:                "",
         default_bg_color:           "e0e0e0",
         hash_bookmark:              true,
-        scale_factor:               20,
+        scale_factor:               1,
+        zoom_sequence:              [
+            0.2,
+            0.5,
+            1,
+            2,
+            3,
+            5,
+            8,
+            13,
+            21,
+            34,
+            55,
+            95
+        ],
         height:                     600,
         layout:                     "landscape",    // portrait or landscape
         timenav_position:           "bottom",       // timeline on top or bottom
