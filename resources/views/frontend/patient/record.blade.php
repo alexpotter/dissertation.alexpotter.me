@@ -53,7 +53,8 @@
                 'snapEvents': true,
                 'step': true,
                 'showNavigation': true,
-                'groupsOrder': true
+                'groupsOrder': true,
+                'clusterMaxItems': 1
             };
 
             // Instantiate our timeline object.
