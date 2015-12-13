@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use DB;
+
 class FrontendController extends Controller
 {
     /**
@@ -21,36 +23,47 @@ class FrontendController extends Controller
 
     public function patient($id)
     {
+        // SELECT data from db
+        $events = DB::table('SBCDS_CLINICAL_EVENT')->where('BCI_ID', $id)->orderBy('EVENT_DATE', 'asc')->get();
 
-        $patientData = array(
-            array(
-                "content" => "Radiology",
-                "start" => array(
-                    "year" => 1982,
-                    "month" => 02,
-                    'day' => 1
+        if(!$events)
+        {
+            return view('frontend/patient/patientNotFound');
+        }
+
+        // Patient data
+        $patientData = array();
+        $counter = 0;
+
+        foreach ($events as $event)
+        {
+            $content = DB::table('SBCDS_EVENT_CODES')->where('REQUEST_CODE', $event->EVENT_TYPE)->where('REQUEST_TYPE', $event->SPECIALTY)->get();
+            $content = ($content) ? $content[0]->DISPLAY_NAME : 'Unknown';
+
+            $date = explode(' ', $event->EVENT_DATE)[0];
+            $dateArray = explode('-', $date);
+
+            $patientData[$counter] = array(
+                'content' => $content,
+                'start' => array(
+                    'year' => $dateArray[0],
+                    'month' => $dateArray[1],
+                    'day' => $dateArray[2]
                 ),
-                "group" => "Radiology",
-                "type" => "box"
-            ),
-            array(
-                "content" => "Radiology",
-                "start" => array(
-                    "year" => 1982,
-                    "month" => 02,
-                    'day' => 1
-                ),
-                "group" => "Radiology",
-                "type" => "box"
-            )
-        );
+                'group' => $event->SPECIALTY,
+                'type' => 'box'
+            );
+
+            $counter ++;
+        }
 
         // This will be used to return patient data
         // The id here will be inserted into the template to post to the above function
         // That will then be rendered onto the patients page
         return view('frontend/patient/record', array(
             'patientId' => $id,
-            'patientData' => $patientData
+            'patientData' => $patientData,
+            'patientEvents' => $events
         ));
     }
 

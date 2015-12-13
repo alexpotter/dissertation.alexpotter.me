@@ -34,7 +34,7 @@
 <div id="search">
     <button type="button" class="close">×</button>
     <form id="patientSearchForm" name="patientSearch" method="post" action="{{ url('/patient/search') }}">
-        <input name="patientName" id="patientName" type="search" value="" placeholder="Patient name..." autocomplete="off">
+        <input name="patientName" id="patientName" type="search" value="" placeholder="Patient ID..." autocomplete="off">
         <button type="submit" class="btn btn-primary">Search</button>
     </form>
 </div>
