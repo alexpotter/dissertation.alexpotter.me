@@ -52,62 +52,37 @@
         // Called when the Visualization API is loaded.
         function drawVisualization() {
             // Create a JSON data table
-            data = [];
+            data = [
+                {
+                    "content": "Radiology",
+                    "start": new Date(1982, 0, 2),
+                    "group": "Radiology",
+                    "type": "box"
+                },
+                {
+                    "content": "Radiology",
+                    "start": new Date(1982, 0, 2),
+                    "group": "Radiology",
+                    "type": "box"
+                },
+                {
+                    "content": "Check up",
+                    "start": new Date(1982, 0, 2),
+                    "group": "Check up",
+                    "type": "box"
+                }
+            ];
 
-            // an item every month
-            var i, iMax = 1000;
-            var num = 0;
-            var date = new Date(2012, 0, 1);
-            for (i = 0; i < iMax; i++) {
-                date.setMonth(date.getMonth() + 1);
-                data.push({
-                    "start": new Date(date),
-                    "content": "item " + num
-                });
-                num++;
-            }
-
-            // an item every day
-            date = new Date(2012, 3, 1);
-            for (i = 0; i < iMax; i++) {
-                date.setDate(date.getDate() + 1);
-                data.push({
-                    "start": new Date(date),
-                    "content": "item " + num
-                });
-                num++;
-            }
-
-            // an item every hour
-            date = new Date(2012, 6, 1);
-            for (i = 0; i < iMax; i++) {
-                date.setHours(date.getHours() + 1);
-                data.push({
-                    "start": new Date(date),
-                    "content": "item " + num
-                });
-                num++;
-            }
-
-            // items on the same spot
-            date = new Date(2012, 9, 1);
-            for (i = 0; i < iMax; i++) {
-                data.push({
-                    "start": new Date(date),
-                    "content": "item " + num
-                });
-                num++;
-            }
+            console.log(data);
 
             // specify options
             var options = {
                 'width':  '100%',
-                'height': '300px',
-                'start': new Date(2012, 0, 1),
+                'height': '500px',
+                'start': new Date(1982, 0, 1),
                 'end': new Date(2012, 11, 31),
                 'cluster': true,
-                // 'axisOnTop': true,
-                'editable': true
+                'editable': false
             };
 
             // Instantiate our timeline object.
