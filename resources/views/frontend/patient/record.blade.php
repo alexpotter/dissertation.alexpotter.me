@@ -52,28 +52,18 @@
         // Called when the Visualization API is loaded.
         function drawVisualization() {
             // Create a JSON data table
-            data = [
-                {
-                    "content": "Radiology",
-                    "start": new Date(1982, 0, 2),
-                    "group": "Radiology",
-                    "type": "box"
-                },
-                {
-                    "content": "Radiology",
-                    "start": new Date(1982, 0, 2),
-                    "group": "Radiology",
-                    "type": "box"
-                },
-                {
-                    "content": "Check up",
-                    "start": new Date(1982, 0, 2),
-                    "group": "Check up",
-                    "type": "box"
-                }
-            ];
+            data = [];
 
-            console.log(data);
+            @foreach($patientData as $data)
+                var date = new Date({{ $data['start']['year'] }}, {{ $data['start']['month'] }}, {{ $data['start']['day'] }});
+                date.setMonth(date.getMonth() + 1);
+                data.push({
+                    "start": new Date(date),
+                    "content": '{{ $data['content'] }}',
+                    "group": '{{ $data['group'] }}',
+                    "type": '{{ $data['type'] }}'
+                });
+            @endforeach
 
             // specify options
             var options = {
@@ -91,7 +81,7 @@
             // Draw our timeline with the created data and options
             timeline.draw(data);
         }
-
+        console.log(new Date(2012, 11, 31));
     </script>
 </head>
 <body onload="drawVisualization();">
