@@ -10,8 +10,8 @@
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- CSS-->
-    <link rel="stylesheet" href="{{ url('timeline/css/timeline.css') }}">
-    <link rel="stylesheet" href="{{ url('dist/frontend/css/timeline.css') }}">
+    <link rel="stylesheet" href="{{ url('timeline/timeline.css') }}">
+    {{--<link rel="stylesheet" href="{{ url('dist/frontend/css/timeline.css') }}">--}}
     <!-- Style-->
     <style>
         html, body {
@@ -41,91 +41,89 @@
 
     -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <!-- JavaScript-->
+    <script src="{{ url('timeline/timeline.js') }}"></script>
+
+    <script type="text/javascript">
+        var timeline;
+        var data;
+
+        // Called when the Visualization API is loaded.
+        function drawVisualization() {
+            // Create a JSON data table
+            data = [];
+
+            // an item every month
+            var i, iMax = 1000;
+            var num = 0;
+            var date = new Date(2012, 0, 1);
+            for (i = 0; i < iMax; i++) {
+                date.setMonth(date.getMonth() + 1);
+                data.push({
+                    "start": new Date(date),
+                    "content": "item " + num
+                });
+                num++;
+            }
+
+            // an item every day
+            date = new Date(2012, 3, 1);
+            for (i = 0; i < iMax; i++) {
+                date.setDate(date.getDate() + 1);
+                data.push({
+                    "start": new Date(date),
+                    "content": "item " + num
+                });
+                num++;
+            }
+
+            // an item every hour
+            date = new Date(2012, 6, 1);
+            for (i = 0; i < iMax; i++) {
+                date.setHours(date.getHours() + 1);
+                data.push({
+                    "start": new Date(date),
+                    "content": "item " + num
+                });
+                num++;
+            }
+
+            // items on the same spot
+            date = new Date(2012, 9, 1);
+            for (i = 0; i < iMax; i++) {
+                data.push({
+                    "start": new Date(date),
+                    "content": "item " + num
+                });
+                num++;
+            }
+
+            // specify options
+            var options = {
+                'width':  '100%',
+                'height': '300px',
+                'start': new Date(2012, 0, 1),
+                'end': new Date(2012, 11, 31),
+                'cluster': true,
+                // 'axisOnTop': true,
+                'editable': true
+            };
+
+            // Instantiate our timeline object.
+            timeline = new links.Timeline(document.getElementById('mytimeline'), options);
+
+            // Draw our timeline with the created data and options
+            timeline.draw(data);
+        }
+
+    </script>
 </head>
-<body>
+<body onload="drawVisualization();">
 <div id="patient_data">
     <h1 style="text-align: center">Patient Data here</h1>
     <h2 style="text-align: center">{{ $patientId }}</h2>
 </div>
-<div id="timeLine"></div>
-<!-- JavaScript-->
-<script src="{{ url('timeline/js/timeline.js') }}"></script>
-<script>
-    options = {
-        script_path:                "",
-        default_bg_color:           "e0e0e0",
-        hash_bookmark:              true,
-        scale_factor:               0.8,
-        zoom_sequence:              [
-            0.2,
-            0.5,
-            0.6,
-            0.7,
-            0.8,
-            0.9,
-            1,
-            2,
-            3,
-            5,
-            8,
-            13,
-            21,
-            34,
-            55,
-            95
-        ],
-        height:                     600,
-        layout:                     "landscape",    // portrait or landscape
-        timenav_position:           "bottom",       // timeline on top or bottom
-        optimal_tick_width:         50,            // optimal distance (in pixels) between ticks on axis
-        base_class:                 "time-line-override",
-        timenav_height:             300,
-        timenav_height_percentage:  30,             // Overrides timenav height as a percentage of the screen
-        timenav_height_min:         300,            // Minimum timenav height
-        marker_height_min:          50,             // Minimum Marker Height
-        marker_width_min:           40,            // Minimum Marker Width
-        marker_padding:             10,              // Top Bottom Marker Padding
-        start_at_slide:             0,
-        menubar_height:             0,
-        skinny_size:                20,
-        relative_date:              false,          // Use momentjs to show a relative date from the slide.text.date.created_time field
-        use_bc:                     false,          // Use declared suffix on dates earlier than 0
-        // animation
-        duration:                   500,
-        ease:                       TL.Ease.easeInOutQuint,
-        // interaction
-        dragging:                   true,
-        trackResize:                true,
-        map_type:                   "stamen:toner-lite",
-        slide_padding_lr:           100,            // padding on slide of slide
-        slide_default_fade:         "0%",           // landscape fade
-        language:                   "en"
-    };
-
-    $(function() {
-        // Will need to make a post or at least add patient ID to get particular patient record
-        $.get( "{{ url('timeline/test-data.json') }}", function( data ) {
-            var timeline = new TL.Timeline('timeLine', data, options);
-            window.onresize = function(event) {
-                timeline.updateDisplay();
-            }
-        });
-
-        $.ajax({
-                    type: "POST",
-                    url: '{{ url('patient/get/records') }}',
-                    data: {
-                        _token: '{{ csrf_token() }}'
-                    },
-                    dataType: 'json'
-                })
-                .done(function(data) {
-                    console.log(data);
-                })
-                .fail(function(jqXHR, status, thrownError) {
-                    console.log(jQuery.parseJSON(jqXHR.responseText));
-                });
-    });
-</script>
+<div id="mytimeline"></div>
 </body>
 </html>
