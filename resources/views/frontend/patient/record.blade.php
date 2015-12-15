@@ -9,7 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    {{--<link rel="stylesheet" href="{{ url('dist/frontend/css/timeline.css') }}">--}}
 
     <!-- HTML5 shim, for IE6-8 support of HTML elements-->
     <!--if lt IE 9
@@ -33,8 +32,8 @@
             data = [];
 
             @foreach($patientData as $data)
-                var date = new Date({{ $data['start']['year'] }}, {{ $data['start']['month'] }}, {{ $data['start']['day'] }});
-                date.setMonth(date.getMonth() + 1);
+                var date = new Date({{ $data['start']['year'] }}, {{ $data['start']['month'] }}, {{ $data['start']['day'] }}, {{ $data['start']['hour'] }}, {{ $data['start']['minute'] }}, {{ $data['start']['second'] }}, 0);
+                date.setMonth(date.getMonth() - 1);
                 data.push({
                     "start": new Date(date),
                     "content": '{{ $data['content'] }}',
@@ -58,7 +57,7 @@
             };
 
             // Instantiate our timeline object.
-            timeline = new links.Timeline(document.getElementById('mytimeline'), options);
+            timeline = new links.Timeline(document.getElementById('patientTimeLine'), options);
 
             // Draw our timeline with the created data and options
             timeline.draw(data);
@@ -71,6 +70,6 @@
     <h1 style="text-align: center">Patient Data here</h1>
     <h2 style="text-align: center">{{ $patientId }}</h2>
 </div>
-<div id="mytimeline"></div>
+<div id="patientTimeLine"></div>
 </body>
 </html>

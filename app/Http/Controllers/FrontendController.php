@@ -28,7 +28,7 @@ class FrontendController extends Controller
 
         if(!$events)
         {
-            return view('frontend/patient/patientNotFound');
+            return view('frontend/patient/notFound');
         }
 
         // Patient data
@@ -40,15 +40,19 @@ class FrontendController extends Controller
             $content = DB::table('SBCDS_EVENT_CODES')->where('REQUEST_CODE', $event->EVENT_TYPE)->where('REQUEST_TYPE', $event->SPECIALTY)->get();
             $content = ($content) ? $content[0]->DISPLAY_NAME : 'Unknown';
 
-            $date = explode(' ', $event->EVENT_DATE)[0];
-            $dateArray = explode('-', $date);
+            $dateTime = explode(' ', $event->EVENT_DATE);
+            $dateArray = explode('-', $dateTime[0]);
+            $timeArray = explode(':', $dateTime[1]);
 
             $patientData[$counter] = array(
                 'content' => $content,
                 'start' => array(
                     'year' => $dateArray[0],
                     'month' => $dateArray[1],
-                    'day' => $dateArray[2]
+                    'day' => $dateArray[2],
+                    'hour' => $timeArray[0],
+                    'minute' => $timeArray[1],
+                    'second' => $timeArray[2]
                 ),
                 'group' => $event->SPECIALTY,
                 'type' => 'box'
