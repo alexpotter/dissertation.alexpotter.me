@@ -76,13 +76,17 @@ class FrontendController extends Controller
         // If many patients return many as JSON
         // If one patient return redirect
         // Else return 400
-        if ($request->input('patientName') == 'bad') {
+        $patient = DB::table('SBCDS_CLINICAL_EVENT')->where('BCI_ID', $request->input('patientName'))->orderBy('EVENT_DATE', 'asc')->get();
+
+        if(!$patient)
+        {
             return response(json_encode(array(
                 'status' => 'fail',
-                'msg' => 'No patients exists'
+                'msg' => 'No patient found'
             )), 400, array('application/json'));
         }
-        else {
+        else
+        {
             return response(json_encode(array(
                 'url' => url('patient/'.$request->input('patientName')),
                 'status' => 'success'

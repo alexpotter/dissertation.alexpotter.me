@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>SBCDS 404</title>
+        <title>SBCDS 405</title>
 
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
@@ -40,7 +40,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">404. Page not found.</div>
+                <div class="title">405. Method not allowed.</div>
             </div>
         </div>
     </body>
