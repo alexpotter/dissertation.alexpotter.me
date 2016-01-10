@@ -19,28 +19,48 @@
 
     <!-- JavaScript-->
     <script src="{{ url('timeline/timeline.js') }}"></script>
+    <script type="text/javascript" src="{{ url('dist/frontend/js/google.js') }}"></script>
     <!-- CSS-->
     <link rel="stylesheet" href="{{ url('timeline/timeline.css') }}">
 
     <script type="text/javascript">
+        google.load("visualization", "1");
+
+        // Set callback to run when API is loaded
+        google.setOnLoadCallback(drawVisualization);
+
         var timeline;
         var data;
 
+        function getSelectedRow() {
+            var row = undefined;
+            var sel = timeline.getSelection();
+            if (sel.length) {
+                if (sel[0].row != undefined) {
+                    row = sel[0].row;
+                }
+            }
+            return row;
+        }
+
         // Called when the Visualization API is loaded.
         function drawVisualization() {
-            // Create a JSON data table
-            data = [];
+            // Clear local storage
+            localStorage.clear();
 
-            @foreach($patientData as $data)
-                var date = new Date({{ $data['start']['year'] }}, {{ $data['start']['month'] }}, {{ $data['start']['day'] }}, {{ $data['start']['hour'] }}, {{ $data['start']['minute'] }}, {{ $data['start']['second'] }}, 0);
-                date.setMonth(date.getMonth() - 1);
-                data.push({
-                    "start": new Date(date),
-                    "content": '{{ $data['content'] }}',
-                    "group": '{{ $data['group'] }}',
-                    "type": '{{ $data['type'] }}'
-                });
-            @endforeach
+            // Create a JSON data table
+            // Create and populate a data table.
+            data = new google.visualization.DataTable();
+            data.addColumn('datetime', 'start');
+            data.addColumn('string', 'content');
+            data.addColumn('string', 'group');
+            data.addColumn('string', 'type');
+
+            data.addRows([
+                    @foreach($patientData as $data)
+                        [new Date({{ $data['start']['year'] }}, {{ $data['start']['month'] - 1 }}, {{ $data['start']['day'] }}), '{{ $data['content'] }}', '{{  $data['group'] }}', '{{ $data['type'] }}'],
+                    @endforeach
+            ]);
 
             // specify options
             var options = {
@@ -56,13 +76,30 @@
                 'clusterMaxItems': 1
             };
 
-            // Instantiate our timeline object.
+            // Instantiate our time line object.
             timeline = new links.Timeline(document.getElementById('patientTimeLine'), options);
 
-            // Draw our timeline with the created data and options
+            // Add event listeners
+            google.visualization.events.addListener(timeline, 'select', onSelect);
+
+            // Draw our time line with the created data and options
             timeline.draw(data);
         }
-        console.log(new Date(2012, 11, 31));
+
+        var onSelect = function (event) {
+            // The ID of the time line is the index of the array returned from controller
+
+            var row = getSelectedRow();
+
+            if (row != undefined) {
+                console.log("item " + row + " selected");
+                // Note: you can retrieve the contents of the selected row with
+                //       data.getValue(row, 2);
+            }
+            else {
+                console.log("no item selected");
+            }
+        };
     </script>
 </head>
 <body onload="drawVisualization();">
