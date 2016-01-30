@@ -23,3 +23,6 @@ Route::get('/patient/get/records', function() {
 // Maybe set records to route through a login page should enough time remain
 Route::post('/patient/search', 'FrontendController@searchPatient');
 Route::post('/patient/get/records/', 'FrontendController@getRecords');
+
+// Admin
+Route::get('admin', 'AdminController@index');
