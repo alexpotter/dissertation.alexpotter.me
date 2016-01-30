@@ -27,7 +27,7 @@ class FrontendController extends Controller
         $events = DB::table('SBCDS_CLINICAL_EVENT')
             ->where('BCI_ID', $id)
             ->orderBy('EVENT_DATE', 'asc')
-            ->groupBy('EVENT_CONTEXT')
+            //->groupBy('EVENT_CONTEXT')
             ->get();
 
         if(!$events)

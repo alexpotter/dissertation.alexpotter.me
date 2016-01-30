@@ -2,8 +2,28 @@ $RAD-border-color:          #ff0000;
 $RAD-color:                 #ff0000;
 $RAD-background-color:      yellow;
 
+$HM-border-color:           green;
+$HM-color:                  green;
+$HM-background-color:       #ffffff;
+
+$CC-border-color:           #000000;
+$CC-color:                  #000000;
+$CC-background-color:       orange;
+
 .RAD {
   border-color: $RAD-border-color !important;
   color: $RAD-color !important;
   background-color: $RAD-background-color !important;
+}
+
+.HM {
+  border-color: $HM-border-color !important;
+  color: $HM-color !important;
+  background-color: $HM-background-color !important;
+}
+
+.CC {
+  border-color: $CC-border-color !important;
+  color: $CC-color !important;
+  background-color: $CC-background-color !important;
 }
