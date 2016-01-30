@@ -59,6 +59,6 @@ class Event extends Model
 
     public function getEventNameByCode($eventCode)
     {
-        return (array_key_exists($eventCode, $this->eventNames)) ? $this->eventNames[$eventCode] : "Unknown";
+        return (array_key_exists($eventCode, $this->eventNames)) ? $this->eventNames[$eventCode] : $eventCode;
     }
 }

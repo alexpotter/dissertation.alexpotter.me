@@ -26,9 +26,12 @@ class FrontendController extends Controller
     {
         // SELECT data from db
         $events = DB::table('SBCDS_CLINICAL_EVENT')
+            ->leftJoin('SBCDS_EVENT_CODES', function($join) {
+                $join->on('SBCDS_EVENT_CODES.REQUEST_CODE', '=', 'SBCDS_CLINICAL_EVENT.EVENT_CONTEXT')
+                    ->on('SBCDS_EVENT_CODES.REQUEST_TYPE', '=', 'SBCDS_CLINICAL_EVENT.SPECIALTY');
+            })
             ->where('BCI_ID', $id)
             ->orderBy('EVENT_DATE', 'asc')
-            //->groupBy('EVENT_CONTEXT')
             ->get();
 
         if(!$events)
@@ -42,15 +45,11 @@ class FrontendController extends Controller
 
         foreach ($events as $event)
         {
-            $content = DB::table('SBCDS_EVENT_CODES')
-                ->where('REQUEST_CODE', $event->EVENT_TYPE)
-                //->where('REQUEST_TYPE', $event->SPECIALTY)
-                ->get();
-            $content = ($content) ? $content[0]->DISPLAY_NAME : 'Unknown';
-
             $clinicalEvent = new Event();
 
-            if ($content != 'Unknown' && $clinicalEvent->checkEventIsNotExcluded($event->SPECIALTY))
+            $content = ($event->DISPLAY_NAME != '') ? $event->DISPLAY_NAME : 'Unknown';
+
+            if ($clinicalEvent->checkEventIsNotExcluded($event->SPECIALTY))
             {
                 $dateTime = explode(' ', $event->EVENT_DATE);
                 $dateArray = explode('-', $dateTime[0]);

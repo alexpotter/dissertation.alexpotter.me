@@ -75,7 +75,7 @@
                 'step': true,
                 'showNavigation': true,
                 'groupsOrder': true,
-                'clusterMaxItems': 10
+                'clusterMaxItems': 5
             };
 
             // Instantiate our time line object.
