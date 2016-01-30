@@ -7,6 +7,7 @@ use Patienttimeline\Http\Requests;
 use Patienttimeline\Http\Controllers\Controller;
 
 use DB;
+use Patienttimeline\Event;
 
 class FrontendController extends Controller
 {
@@ -47,7 +48,9 @@ class FrontendController extends Controller
                 ->get();
             $content = ($content) ? $content[0]->DISPLAY_NAME : 'Unknown';
 
-            if ($content != 'Unknown')
+            $clinicalEvent = new Event();
+
+            if ($content != 'Unknown' && $clinicalEvent->checkEventIsNotExcluded($event->SPECIALTY))
             {
                 $dateTime = explode(' ', $event->EVENT_DATE);
                 $dateArray = explode('-', $dateTime[0]);
@@ -63,7 +66,7 @@ class FrontendController extends Controller
                         'minute' => $timeArray[1],
                         'second' => $timeArray[2]
                     ),
-                    'group' => $event->SPECIALTY,
+                    'group' => $clinicalEvent->getEventNameByCode($event->SPECIALTY),
                     'type' => 'box'
                 );
 
