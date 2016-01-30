@@ -15,3 +15,9 @@
   color: #000000 !important;
   background-color: orange !important;
 }
+
+div.timeline-event-cluster {
+  border-color: blue !important;
+  color: blue !important;
+  background-color: #ffffff !important;
+}
