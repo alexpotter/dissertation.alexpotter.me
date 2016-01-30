@@ -67,6 +67,7 @@ class FrontendController extends Controller
                         'second' => $timeArray[2]
                     ),
                     'group' => $clinicalEvent->getEventNameByCode($event->SPECIALTY),
+                    'cssClass' => $event->SPECIALTY,
                     'type' => 'box'
                 );
 

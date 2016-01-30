@@ -60,7 +60,7 @@
 
             data.addRows([
                     @foreach($patientData as $data)
-                        [new Date({{ $data['start']['year'] }}, {{ $data['start']['month'] - 1 }}, {{ $data['start']['day'] }}, {{ $data['start']['hour'] }}, {{ $data['start']['minute'] }}, {{ $data['start']['second'] }}, 0), '{{ $data['content'] }}', '{{  $data['group'] }}', '{{ $data['type'] }}', '{{  $data['group'] }}'],
+                        [new Date({{ $data['start']['year'] }}, {{ $data['start']['month'] - 1 }}, {{ $data['start']['day'] }}, {{ $data['start']['hour'] }}, {{ $data['start']['minute'] }}, {{ $data['start']['second'] }}, 0), '{{ $data['content'] }}', '{{  $data['group'] }}', '{{ $data['type'] }}', '{{  $data['cssClass'] }}'],
                     @endforeach
             ]);
 
