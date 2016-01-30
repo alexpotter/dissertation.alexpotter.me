@@ -1,5 +1,5 @@
 suites:
     main:
-        namespace: App
-        psr4_prefix: App
+        namespace: Patienttimeline
+        psr4_prefix: Patienttimeline
         src_path: app

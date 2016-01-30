@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Patienttimeline\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use Patienttimeline\Http\Requests;
+use Patienttimeline\Http\Controllers\Controller;
 
 use DB;
 
