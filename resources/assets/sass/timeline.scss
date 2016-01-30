@@ -1,0 +1,9 @@
+$RAD-border-color:          #ff0000;
+$RAD-color:                 #ff0000;
+$RAD-background-color:      yellow;
+
+.RAD {
+  border-color: $RAD-border-color !important;
+  color: $RAD-color !important;
+  background-color: $RAD-background-color !important;
+}

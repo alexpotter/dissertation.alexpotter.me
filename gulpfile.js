@@ -29,6 +29,9 @@ elixir(function(mix) {
     mix.sass([
         'frontend.scss'
     ], 'public/assets/css/frontend/style.css');
+    mix.sass([
+        'timeline.scss'
+    ], 'public/assets/css/frontend/timeline.css');
 
     // Admin
     mix.sass([

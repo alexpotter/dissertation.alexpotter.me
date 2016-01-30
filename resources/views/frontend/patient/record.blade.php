@@ -22,6 +22,7 @@
     <script type="text/javascript" src="{{ url('assets/js/google.js') }}"></script>
     <!-- CSS-->
     <link rel="stylesheet" href="{{ url('timeline/timeline.css') }}">
+    <link rel="stylesheet" href="{{ url('assets/css/frontend/timeline.css') }}">
 
     <script type="text/javascript">
         google.load("visualization", "1");
@@ -55,10 +56,11 @@
             data.addColumn('string', 'content');
             data.addColumn('string', 'group');
             data.addColumn('string', 'type');
+            data.addColumn('string', 'className');
 
             data.addRows([
                     @foreach($patientData as $data)
-                        [new Date({{ $data['start']['year'] }}, {{ $data['start']['month'] - 1 }}, {{ $data['start']['day'] }}, {{ $data['start']['hour'] }}, {{ $data['start']['minute'] }}, {{ $data['start']['second'] }}, 0), '{{ $data['content'] }}', '{{  $data['group'] }}', '{{ $data['type'] }}'],
+                        [new Date({{ $data['start']['year'] }}, {{ $data['start']['month'] - 1 }}, {{ $data['start']['day'] }}, {{ $data['start']['hour'] }}, {{ $data['start']['minute'] }}, {{ $data['start']['second'] }}, 0), '{{ $data['content'] }}', '{{  $data['group'] }}', '{{ $data['type'] }}', '{{  $data['group'] }}'],
                     @endforeach
             ]);
 
@@ -67,13 +69,13 @@
                 'width':  '100%',
                 'cluster': true,
                 'editable': false,
-                'groupsOrder': false,
-                'stackEvents': false,
+                'groupsOrder': true,
+                'stackEvents': true,
                 'snapEvents': true,
                 'step': true,
                 'showNavigation': true,
                 'groupsOrder': true,
-                'clusterMaxItems': 1
+                'clusterMaxItems': 10
             };
 
             // Instantiate our time line object.

@@ -24,7 +24,11 @@ class FrontendController extends Controller
     public function patient($id)
     {
         // SELECT data from db
-        $events = DB::table('SBCDS_CLINICAL_EVENT')->where('BCI_ID', $id)->orderBy('EVENT_DATE', 'asc')->get();
+        $events = DB::table('SBCDS_CLINICAL_EVENT')
+            ->where('BCI_ID', $id)
+            ->orderBy('EVENT_DATE', 'asc')
+            ->groupBy('EVENT_CONTEXT')
+            ->get();
 
         if(!$events)
         {
@@ -37,28 +41,34 @@ class FrontendController extends Controller
 
         foreach ($events as $event)
         {
-            $content = DB::table('SBCDS_EVENT_CODES')->where('REQUEST_CODE', $event->EVENT_TYPE)->where('REQUEST_TYPE', $event->SPECIALTY)->get();
+            $content = DB::table('SBCDS_EVENT_CODES')
+                ->where('REQUEST_CODE', $event->EVENT_TYPE)
+                //->where('REQUEST_TYPE', $event->SPECIALTY)
+                ->get();
             $content = ($content) ? $content[0]->DISPLAY_NAME : 'Unknown';
 
-            $dateTime = explode(' ', $event->EVENT_DATE);
-            $dateArray = explode('-', $dateTime[0]);
-            $timeArray = explode(':', $dateTime[1]);
+            if ($content != 'Unknown')
+            {
+                $dateTime = explode(' ', $event->EVENT_DATE);
+                $dateArray = explode('-', $dateTime[0]);
+                $timeArray = explode(':', $dateTime[1]);
 
-            $patientData[$counter] = array(
-                'content' => $content,
-                'start' => array(
-                    'year' => $dateArray[0],
-                    'month' => $dateArray[1],
-                    'day' => $dateArray[2],
-                    'hour' => $timeArray[0],
-                    'minute' => $timeArray[1],
-                    'second' => $timeArray[2]
-                ),
-                'group' => $event->SPECIALTY,
-                'type' => 'box'
-            );
+                $patientData[$counter] = array(
+                    'content' => $content,
+                    'start' => array(
+                        'year' => $dateArray[0],
+                        'month' => $dateArray[1],
+                        'day' => $dateArray[2],
+                        'hour' => $timeArray[0],
+                        'minute' => $timeArray[1],
+                        'second' => $timeArray[2]
+                    ),
+                    'group' => $event->SPECIALTY,
+                    'type' => 'box'
+                );
 
-            $counter ++;
+                $counter ++;
+            }
         }
 
         // This will be used to return patient data
