@@ -11,10 +11,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
     <!-- Bootstrap -->
-    <link href="{{ url('/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ url('assets/css/app.css') }}" rel="stylesheet">
 
     <!-- Custom styles -->
-    <link href="{{ url('/dist/frontend/css/style.css') }}" rel="stylesheet">
+    <link href="{{ url('assets/css/frontend/style.css') }}" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -76,6 +76,6 @@
         })
     });
 </script>
-<script src="{{ url('/bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="{{ url('assets/js/bootstrap.js') }}"></script>
 </body>
 </html>

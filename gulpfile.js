@@ -12,5 +12,15 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.sass('app.scss');
+    // Global CSS and JS
+    mix.sass([
+        'app.scss'
+    ], 'public/assets/css');
+    mix.copy('node_modules/bootstrap-sass/assets/javascripts/bootstrap.js', 'public/assets/js/bootstrap.js');
+    mix.copy('resources/assets/js/google.js', 'public/assets/js');
+
+    // Frontend
+    mix.sass([
+        'frontend.scss'
+    ], 'public/assets/css/frontend/style.css');
 });
