@@ -2,13 +2,13 @@ $RAD-border-color:          #ff0000;
 $RAD-color:                 #ff0000;
 $RAD-background-color:      yellow;
 
-$HM-border-color:           green;
-$HM-color:                  green;
-$HM-background-color:       #ffffff;
+$CAN-border-color:          green;
+$CAN-color:                 green;
+$CAN-background-color:      #ffffff;
 
-$CC-border-color:           #000000;
-$CC-color:                  #000000;
-$CC-background-color:       orange;
+$HI-border-color:           #000000;
+$HI-color:                  #000000;
+$HI-background-color:       orange;
 
 .RAD {
   border-color: $RAD-border-color !important;
@@ -16,14 +16,14 @@ $CC-background-color:       orange;
   background-color: $RAD-background-color !important;
 }
 
-.HM {
-  border-color: $HM-border-color !important;
-  color: $HM-color !important;
-  background-color: $HM-background-color !important;
+.CAN {
+  border-color: $CAN-border-color !important;
+  color: $CAN-color !important;
+  background-color: $CAN-background-color !important;
 }
 
-.CC {
-  border-color: $CC-border-color !important;
-  color: $CC-color !important;
-  background-color: $CC-background-color !important;
+.HI {
+  border-color: $HI-border-color !important;
+  color: $HI-color !important;
+  background-color: $HI-background-color !important;
 }
