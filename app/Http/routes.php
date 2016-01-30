@@ -24,5 +24,9 @@ Route::get('/patient/get/records', function() {
 Route::post('/patient/search', 'FrontendController@searchPatient');
 Route::post('/patient/get/records/', 'FrontendController@getRecords');
 
-// Admin
-Route::get('admin', 'AdminController@index');
+Route::group(['prefix' => 'admin'], function() {
+    Route::get('/', 'AdminController@index');
+    Route::get('/login', 'AdminController@loginPage');
+    Route::post('/login', 'AdminController@authenticate');
+    Route::get('/logout', 'AdminController@logout');
+});
