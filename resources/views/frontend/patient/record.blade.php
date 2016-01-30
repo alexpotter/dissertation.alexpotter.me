@@ -19,7 +19,7 @@
 
     <!-- JavaScript-->
     <script src="{{ url('timeline/timeline.js') }}"></script>
-    <script type="text/javascript" src="{{ url('dist/frontend/js/google.js') }}"></script>
+    <script type="text/javascript" src="{{ url('assets/js/google.js') }}"></script>
     <!-- CSS-->
     <link rel="stylesheet" href="{{ url('timeline/timeline.css') }}">
 
