@@ -29,4 +29,8 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('/login', 'AdminController@loginPage');
     Route::post('/login', 'AdminController@authenticate');
     Route::get('/logout', 'AdminController@logout');
+
+    Route::group(['prefix' => '/timeline', 'middleware' => 'auth'], function() {
+        Route::get('/settings', 'AdminController@timeLineSettings');
+    });
 });

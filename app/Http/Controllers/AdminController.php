@@ -81,4 +81,12 @@ class AdminController extends Controller
         return redirect('admin/login')->with('message-with-success', 'Successfully logged out');
 
     }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function timeLineSettings()
+    {
+        return view('admin/timeline/settings');
+    }
 }
