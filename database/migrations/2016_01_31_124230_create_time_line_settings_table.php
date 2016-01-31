@@ -17,6 +17,7 @@ class CreateTimeLineSettingsTable extends Migration
             $table->increments('id');
             $table->string('setting_code')->unique();
             $table->string('description');
+            $table->string('setting');
             $table->integer('added_by')->unsigned();
             $table->timestamps();
             $table->foreign('added_by')->references('id')->on('users');
@@ -24,6 +25,7 @@ class CreateTimeLineSettingsTable extends Migration
         DB::table('time_line_settings')->insert([
             'setting_code'  => 'cluster_max',
             'description'   => 'Maximum number of items that may stack within one row',
+            'setting'       => 5,
             'added_by'      => 1,
             'created_at'    => Carbon::now(),
             'updated_at'    => Carbon::now()
