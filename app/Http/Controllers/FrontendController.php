@@ -80,7 +80,8 @@ class FrontendController extends Controller
         return view('frontend/patient/record', array(
             'patientId' => $id,
             'patientData' => $patientData,
-            'patientEvents' => $events
+            'patientEvents' => $events,
+            'timeLineClusterMaxSettings' => DB::table('time_line_settings')->where('setting_code', '=', 'cluster_max')->get()
         ));
     }
 

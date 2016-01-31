@@ -75,7 +75,7 @@
                 'step': true,
                 'showNavigation': true,
                 'groupsOrder': true,
-                'clusterMaxItems': 5
+                'clusterMaxItems': '{{ $timeLineClusterMaxSettings[0]->setting }}'
             };
 
             // Instantiate our time line object.
