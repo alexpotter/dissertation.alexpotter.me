@@ -36,28 +36,30 @@
                 <div class="col-xs-12">
                     <h2>Timeline views</h2>
                 </div>
-                <div class="col-md-4">
-                    <div class="row control-icon-box">
-                        <div class="col-xs-3">
-                            <i class="fa fa-object-group"></i>
-                        </div>
-                        <div class="col-xs-9">
-                            Cluster Max.
-                            <br>
-                            <select id="clusterMaxEdit" onchange="updateTimeLineMaxCluster(this.value, event, '{{ url('admin/timeline/cluster-max/update') }}', '{{ csrf_token() }}');" class="form-control" style="width: auto;">
-                                @for($count = 1; $count <= 10; $count ++)
-                                    @if ($count == $timeLineClusterMaxSetting[0]->setting)
-                                        <option value="{{ $count }}" selected>{{ $count }}</option>
-                                    @else
-                                        <option value="{{ $count }}">{{ $count }}</option>
-                                    @endif
-                                @endfor
-                            </select>
-                        </div>
-                        <div class="col-xs-12">
-                            <p class="description">
-                                {{ $timeLineClusterMaxSetting[0]->description }}
-                            </p>
+                <div class="col-xs-12">
+                    <div class="col-md-4">
+                        <div class="row control-icon-box">
+                            <div class="col-xs-3">
+                                <i class="fa fa-object-group"></i>
+                            </div>
+                            <div class="col-xs-9">
+                                Cluster Max.
+                                <br>
+                                <select id="clusterMaxEdit" onchange="updateTimeLineMaxCluster(this.value, event, '{{ url('admin/timeline/cluster-max/update') }}', '{{ csrf_token() }}');" class="form-control" style="width: auto;">
+                                    @for($count = 1; $count <= 10; $count ++)
+                                        @if ($count == $timeLineClusterMaxSetting[0]->setting)
+                                            <option value="{{ $count }}" selected>{{ $count }}</option>
+                                        @else
+                                            <option value="{{ $count }}">{{ $count }}</option>
+                                        @endif
+                                    @endfor
+                                </select>
+                            </div>
+                            <div class="col-xs-12">
+                                <p class="description">
+                                    {{ $timeLineClusterMaxSetting[0]->description }}
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>

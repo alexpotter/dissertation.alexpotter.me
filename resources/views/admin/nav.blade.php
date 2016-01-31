@@ -6,7 +6,7 @@
         <a href="{{ url( '/admin/logout' ) }}"><li>Log out <i class="fa fa-lock"></i></li></a>
     </ul>
 </div>
-<div class="hidden-lg hidden-md hidden-sm col-xs-12">
+<div class="hidden-lg hidden-md hidden-sm col-xs-12" style="z-index: 9999;">
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
