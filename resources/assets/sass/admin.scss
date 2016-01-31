@@ -338,36 +338,6 @@ p.sub-head {
   float: left;
 }
 
-.category-title {
-  display: block;
-  width: 100%;
-  border-bottom: solid #000000 1px;
-  margin-bottom: 30px;
-  padding-bottom: 10px;
-}
-
-a.delete-category,
-a.add-category {
-  text-align: right;
-  float: right;
-  display: inline;
-  cursor: pointer;
-  padding-top: 5px;
-}
-
-a.show-sub-categories {
-  padding-right: 15px;
-  cursor: pointer;
-}
-
-a.delete-category {
-  color: #FF0000;
-}
-
-a.add-category {
-  color: #8AC007;
-}
-
 @media(max-width: 767px) {
   .admin-content {
     padding-left: 15px;
@@ -382,37 +352,7 @@ a.add-category {
   margin: 20px 0;
 }
 
-.category-box {
-  padding: 15px 10px 0 10px;
-  position: relative;
-  border: solid 1px #000000;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  margin-bottom: 20px;
-}
-
-a.delete-sub-category {
-  text-align: right;
-  color: #FF0000;
-  display: block;
-}
-
 @media(min-width: 1300px) {
-  .category-title {
-    font-size: 36pt;
-  }
-
-  a.delete-category,
-  a.add-category,
-  a.show-sub-categories {
-    font-size: 30pt;
-  }
-
-  a.add-category {
-    padding-right: 40px;
-  }
-
   .control-icon-box {
     font-size: 40px;
   }
@@ -420,44 +360,9 @@ a.delete-sub-category {
   .control-icon-box i {
     font-size: 45px;
   }
-
-  .category-box {
-    font-size: 14pt;
-  }
-
-  .category-box i {
-    font-size: 35px;
-  }
-
-  .category-box p.title {
-    font-size: 20pt;
-  }
-
-  a.delete-sub-category {
-    padding: 15px 5px 10px 15px;
-    font-size: 14pt;
-  }
-
-  a.delete-sub-category i {
-    font-size: 16px;
-  }
 }
 
 @media (min-width: 992px) and (max-width: 1299px) {
-  .category-title {
-    font-size: 30pt;
-  }
-
-  a.delete-category,
-  a.add-category,
-  a.show-sub-categories {
-    font-size: 25pt;
-  }
-
-  a.add-category {
-    padding-right: 40px;
-  }
-
   .control-icon-box {
     font-size: 22px;
   }
@@ -465,93 +370,19 @@ a.delete-sub-category {
   .control-icon-box i {
     font-size: 30px;
   }
-
-  .category-box {
-    font-size: 12pt;
-  }
-
-  .category-box i {
-    font-size: 20px;
-  }
-
-  .category-box p.title {
-    font-size: 12pt;
-    font-weight: bold;
-  }
-
-  a.delete-sub-category {
-    padding: 10px 0 10px 10px;
-    font-size: 12pt;
-  }
-
-  a.delete-sub-category i {
-    font-size: 16px;
-  }
 }
 
 @media (min-width: 501px) and (max-width: 991px) {
-  .category-title {
-    font-size: 36pt;
-  }
-
-  a.delete-category,
-  a.add-category,
-  a.show-sub-categories {
-    font-size: 30pt;
-  }
-
-  a.add-category {
-    padding-right: 25px;
-  }
-
   .control-icon-box {
     font-size: 40px;
   }
 
   .control-icon-box i {
     font-size: 40px;
-  }
-
-  .category-box {
-    font-size: 14pt;
-  }
-
-  .category-box i {
-    font-size: 30px;
-  }
-
-  .category-box p.title {
-    font-size: 20pt;
-  }
-
-  a.delete-sub-category {
-    padding: 15px 0 15px 15px;
-    font-size: 14pt;
-  }
-
-  a.delete-sub-category i {
-    font-size: 16px;
   }
 }
 
 @media(max-width: 500px) {
-  .category-title {
-    font-size: 26pt;
-    float: left;
-  }
-
-  a.delete-category,
-  a.add-category,
-  a.show-sub-categories {
-    font-size: 30pt;
-  }
-
-  a.delete-category,
-  a.add-category {
-    float: right;
-    padding-left: 30px;
-  }
-
   .control-icon-box {
     font-size: 20px;
   }
@@ -559,31 +390,6 @@ a.delete-sub-category {
   .control-icon-box i {
     font-size: 20px;
   }
-
-  .category-box {
-    font-size: 12pt;
-  }
-
-  .category-box i {
-    font-size: 20px;
-  }
-
-  .category-box p.title {
-    font-size: 16pt;
-  }
-
-  a.delete-sub-category {
-    padding: 10px 0 5px 10px;
-    font-size: 14pt;
-  }
-
-  a.delete-sub-category i {
-    font-size: 16px;
-  }
-}
-
-.categories div:nth-child(4n + 1) {
-  clear: left;
 }
 
 /*
@@ -607,31 +413,36 @@ a.delete-sub-category {
 }
 
 /*
- * Homepage specific css
+ * Time line settings specific css
  */
 
-#themeTable {
+#time-line-settings {
   font-size: 14pt;
 }
 
-#themeTable a {
+#time-line-settings a {
   cursor: pointer;
 }
 
-#themeTable .fa {
+#time-line-settings .fa {
   font-size: 16pt;
 }
 
-#themeTable .green {
+#time-line-settings .green {
   color: #2ca02c;
 }
 
-#themeTable .red {
+#time-line-settings .red {
   color: #FF0000;
 }
 
-#themeTable .amber {
+#time-line-settings .amber {
   color: #d58512;
+}
+
+p.description {
+  font-size: 12pt;
+  padding-top: 15px;
 }
 
 .red {

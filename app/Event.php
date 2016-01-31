@@ -7,11 +7,18 @@ use Mockery\CountValidator\Exception;
 
 class Event
 {
+    /**
+     *
+     */
     public function _construct()
     {
 
     }
 
+    /**
+     * @param $code
+     * @return bool
+     */
     public function checkEventIsNotExcluded($code)
     {
         if (DB::table('event_specialty')->where('specialty_code', '=', $code)->where('disabled', '=', 1)->get())
@@ -24,12 +31,20 @@ class Event
         }
     }
 
+    /**
+     * @param $eventCode
+     * @return mixed
+     */
     public function getEventNameByCode($eventCode)
     {
         $eventCodeRow = DB::table('event_specialty')->where('specialty_code', '=', $eventCode)->get();
         return ($eventCodeRow) ? $eventCodeRow[0]->specialty : $eventCode;
     }
 
+    /**
+     * @param $input
+     * @return array
+     */
     public function updateEventStatus($input)
     {
         try {

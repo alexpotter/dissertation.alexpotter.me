@@ -33,5 +33,6 @@ Route::group(['prefix' => 'admin'], function() {
     Route::group(['prefix' => '/timeline', 'middleware' => 'auth'], function() {
         Route::get('/settings', 'AdminController@timeLineSettings');
         Route::post('/specialty/update', 'AdminController@updateSpecialtySetting');
+        Route::post('/cluster-max/update', 'AdminController@updateClusterMaxSetting');
     });
 });

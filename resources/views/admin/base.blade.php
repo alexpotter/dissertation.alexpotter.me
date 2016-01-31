@@ -16,7 +16,7 @@
     <link href="{{ url('assets/css/admin/style.css') }}" rel="stylesheet">
 
     <!--  Font Awesome -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
     <!--  Google fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
@@ -34,11 +34,7 @@
 </head>
 <body>
 <div id="container">
-
     @yield('content')
-
-            <!-- Return to Top -->
-    <a href="javascript:" id="return-to-top"><i class="fa fa-hand-o-up"></i></a>
 </div>
 
 <!-- Scripts -->

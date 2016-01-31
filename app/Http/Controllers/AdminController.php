@@ -15,6 +15,7 @@ use Carbon;
 use File;
 use Storage;
 use Patienttimeline\Event;
+use Patienttimeline\timeLine;
 
 class AdminController extends Controller
 {
@@ -89,14 +90,31 @@ class AdminController extends Controller
     public function timeLineSettings()
     {
         return view('admin/timeline/settings', array(
-            'eventSpecialties' => DB::table('event_specialty')->get()
+            'eventSpecialties' => DB::table('event_specialty')->get(),
+            'timeLineClusterMaxSetting' => DB::table('time_line_settings')->where('setting_code', 'cluster_max')->get()
         ));
     }
 
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function updateSpecialtySetting(Request $request)
     {
         $event = new Event();
         $return = $event->updateEventStatus($request->input('specialtyId'));
+        return response(json_encode($return['responseBody']), $return['status'])
+            ->header('Content-Type', 'application/json');
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function updateClusterMaxSetting(Request $request)
+    {
+        $timeLine = new timeLine();
+        $return = $timeLine->updateTimeLineMaxCluster($request->input('timeLineClusterMax'), $request->input('setting_code'));
         return response(json_encode($return['responseBody']), $return['status'])
             ->header('Content-Type', 'application/json');
     }
