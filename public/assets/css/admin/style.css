@@ -616,3 +616,11 @@ a.delete-sub-category {
 #themeTable .amber {
   color: #d58512;
 }
+
+.red {
+  color: #ff0000;
+}
+
+.green {
+  color: #00AA00;
+}

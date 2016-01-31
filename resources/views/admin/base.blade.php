@@ -44,6 +44,7 @@
 <!-- Scripts -->
 <script src="{{ url( 'assets/js/bootstrap.js' ) }}"></script>
 <script src="{{ url('assets/js/all.js') }}"></script>
+<script src="{{ url('assets/js/admin/functions.js') }}"></script>
 
 </body>
 </html>

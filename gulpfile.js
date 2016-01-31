@@ -37,4 +37,5 @@ elixir(function(mix) {
     mix.sass([
         'admin.scss'
     ], 'public/assets/css/admin/style.css');
+    mix.copy('resources/assets/js/admin/functions.js', 'public/assets/js/admin/functions.js');
 });

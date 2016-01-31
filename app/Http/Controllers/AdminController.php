@@ -14,6 +14,7 @@ use QueryException;
 use Carbon;
 use File;
 use Storage;
+use Patienttimeline\Event;
 
 class AdminController extends Controller
 {
@@ -87,6 +88,16 @@ class AdminController extends Controller
      */
     public function timeLineSettings()
     {
-        return view('admin/timeline/settings');
+        return view('admin/timeline/settings', array(
+            'eventSpecialties' => DB::table('event_specialty')->get()
+        ));
+    }
+
+    public function updateSpecialtySetting(Request $request)
+    {
+        $event = new Event();
+        $return = $event->updateEventStatus($request->input('specialtyId'));
+        return response(json_encode($return['responseBody']), $return['status'])
+            ->header('Content-Type', 'application/json');
     }
 }
