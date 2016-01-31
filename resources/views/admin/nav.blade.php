@@ -2,7 +2,7 @@
     <div class="header"><a href="{{ url('admin') }}">SBCDS</a></div>
     <ul class="navigation">
         <li><i class="fa fa-sign-in"></i> {{ Auth::user()->username }}</li>
-        <a href="{{ url( '/admin/timeline/settings' ) }}"><li>Time line settings <i class="fa fa-line-chart"></i></li></a>
+        <a href="{{ url( '/admin/timeline/settings' ) }}"><li>Timeline settings <i class="fa fa-line-chart"></i></li></a>
         <a href="{{ url( '/admin/logout' ) }}"><li>Log out <i class="fa fa-lock"></i></li></a>
     </ul>
 </div>
@@ -25,7 +25,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#" onclick="return false;"><i class="fa fa-sign-in"></i> {{ Auth::user()->username }}</a></li>
-                    <li><a href="{{ url( '/admin/timeline/settings' ) }}"><i class="fa fa-line-chart"> Time line settings</i></a></li>
+                    <li><a href="{{ url( '/admin/timeline/settings' ) }}"><i class="fa fa-line-chart"> Timeline settings</i></a></li>
                     <li><a href="{{ url( '/admin/logout' ) }}"><i class="fa fa-lock"> Log out</i></a></li>
                 </ul>
             </div>

@@ -2,44 +2,10 @@
 
 namespace Patienttimeline;
 
-use Illuminate\Database\Eloquent\Model;
+use DB;
 
-class Event extends Model
+class Event
 {
-    private $eventNames = array(
-        'CC'        => 'Clinical Chemistry',
-        'HM'        => 'Haematology',
-        'MM'        => 'Microbiology',
-        'RAD'       => 'Radiology',
-        'BT'        => 'Blood Transfusion',
-        'HI'        => 'Histopathology',
-        'CY'        => 'Cytology',
-        'NG'        => 'Non-Gynae Cytology',
-        'IM'        => 'Immunology',
-        'MED'       => 'Medicine',
-        'SUR'       => 'Surgery',
-        'CAN'       => 'Cancer Care',
-        'VV'        => 'Virology',
-        'CAR'       => 'Cardiothoracic',
-        'PO'        => 'To Be Deleted',
-        'HCHC'      => 'To Be Deleted',
-        'CSS'       => 'TO BE Deleted'
-    );
-
-
-    private $exclusions = array(
-        'CC',
-        'HM',
-        'MM',
-        'BT',
-        'IM',
-        'VV',
-        'CAR',
-        'PO',
-        'HCHC',
-        'CSS'
-    );
-
     public function _construct()
     {
 
@@ -47,7 +13,7 @@ class Event extends Model
 
     public function checkEventIsNotExcluded($code)
     {
-        if (in_array($code, $this->exclusions))
+        if (DB::table('event_specialty')->where('specialty_code', '=', $code)->where('disabled', '=', 1)->get())
         {
             return false;
         }
@@ -59,6 +25,7 @@ class Event extends Model
 
     public function getEventNameByCode($eventCode)
     {
-        return (array_key_exists($eventCode, $this->eventNames)) ? $this->eventNames[$eventCode] : $eventCode;
+        $eventCodeRow = DB::table('event_specialty')->where('specialty_code', '=', $eventCode)->get();
+        return ($eventCodeRow) ? $eventCodeRow[0]->specialty : $eventCode;
     }
 }
