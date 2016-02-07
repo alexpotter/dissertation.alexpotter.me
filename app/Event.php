@@ -3,18 +3,11 @@
 namespace Patienttimeline;
 
 use DB;
+use Illuminate\Database\Eloquent\Model;
 use Mockery\CountValidator\Exception;
 
-class Event
+class Event extends Model
 {
-    /**
-     *
-     */
-    public function _construct()
-    {
-
-    }
-
     /**
      * @param $code
      * @return bool

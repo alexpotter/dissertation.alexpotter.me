@@ -19,10 +19,12 @@
 
     <!-- JavaScript-->
     <script src="{{ url('timeline/timeline.js') }}"></script>
-    <script type="text/javascript" src="{{ url('assets/js/google.js') }}"></script>
+    <script type="text/javascript" src="{{ url('assets/js/google.js') }}"></script><!-- Scripts -->
+    <script src="{{ url( 'assets/js/bootstrap.js' ) }}"></script>
     <!-- CSS-->
     <link rel="stylesheet" href="{{ url('timeline/timeline.css') }}">
     <link rel="stylesheet" href="{{ url('assets/css/frontend/timeline.css') }}">
+    <link href="{{ url('assets/css/app.css') }}" rel="stylesheet">
 
     <script type="text/javascript">
         google.load("visualization", "1");
@@ -75,7 +77,7 @@
                 'step': true,
                 'showNavigation': true,
                 'groupsOrder': true,
-                'clusterMaxItems': '{{ $timeLineClusterMaxSettings[0]->setting }}'
+                'clusterMaxItems': {{ $timeLineClusterMaxSettings->setting }}
             };
 
             // Instantiate our time line object.
@@ -88,20 +90,40 @@
             timeline.draw(data);
         }
 
-        var onSelect = function (event) {
-            // The ID of the time line is the index of the array returned from controller
+        function onSelect() {
+            var sel = timeline.getSelection();
 
-            var row = getSelectedRow();
+            if (sel.length) {
+                if (sel[0].row != undefined) {
+                    var row = sel[0].row;
+                    console.log("event " + row + " selected");
+                    localStorage.setItem("eventType", "row");
+                    localStorage.setItem("eventId", row);
+                }
+            }
+            if (sel[0].cluster || sel[0].cluster != undefined) {
+                console.log("cluster " + sel[0].cluster + " selected");
+                localStorage.setItem("eventType", "cluster");
+                localStorage.setItem("eventId", sel[0].cluster);
+            }
 
-            if (row != undefined) {
-                console.log("item " + row + " selected");
-                // Note: you can retrieve the contents of the selected row with
-                //       data.getValue(row, 2);
-            }
-            else {
-                console.log("no item selected");
-            }
-        };
+            $('#patientNotesHiddenButton').trigger('click');
+        }
+
+        $(function() {
+            // Bootstrap modal
+            $('#patientNotes').on('show.bs.modal', function (event) {
+                var typeClicked = localStorage.eventType;
+                var eventId = localStorage.eventId; // Extract info from data-* attributes
+                // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+                // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+                var modal = $(this)
+                modal.find('.modal-title').text('Event ' + eventId);
+                modal.find('.modal-body input').val(eventId);
+                modal.find('#eventInputFromButton').html(typeClicked + ' clicked: ' + eventId
+                        + '<br>Now fire AJAX request to get notes. Map time line ID to event ID. Local storage?');
+            });
+        });
     </script>
 </head>
 <body onload="drawVisualization();">
@@ -110,5 +132,24 @@
     <h2 style="text-align: center">{{ $patientId }}</h2>
 </div>
 <div id="patientTimeLine"></div>
+{{--Modal--}}
+<button type="button" id="patientNotesHiddenButton" class="btn btn-primary" data-toggle="modal" data-target="#patientNotes" style="display: none;"></button>
+<div class="modal fade" id="patientNotes" tabindex="-1" role="dialog" aria-labelledby="patientNotesLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">New message</h4>
+            </div>
+            <div class="modal-body">
+                <div id="eventInputFromButton"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Send message</button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

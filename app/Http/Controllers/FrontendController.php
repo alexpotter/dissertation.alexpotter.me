@@ -81,7 +81,7 @@ class FrontendController extends Controller
             'patientId' => $id,
             'patientData' => $patientData,
             'patientEvents' => $events,
-            'timeLineClusterMaxSettings' => DB::table('time_line_settings')->where('setting_code', '=', 'cluster_max')->get()
+            'timeLineClusterMaxSettings' => DB::table('time_line_settings')->where('setting_code', '=', 'cluster_max')->first()
         ));
     }
 

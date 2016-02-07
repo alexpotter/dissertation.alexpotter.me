@@ -216,7 +216,7 @@ links.Timeline = function(container, options) {
         'clusterMaxItems': 5,
         'style': 'box',
         'customStackOrder': false, //a function(a,b) for determining stackorder amongst a group of items. Essentially a comparator, -ve value for "a before b" and vice versa
-        
+
         // i18n: Timeline only has built-in English text per default. Include timeline-locales.js to support more localized text.
         'locale': 'en',
         'MONTHS': ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
@@ -289,7 +289,7 @@ links.Timeline = function(container, options) {
  */
 links.Timeline.prototype.draw = function(data, options) {
     if (options) {
-        console.log("WARNING: Passing options in draw() is deprecated. Pass options to the constructur or use setOptions() instead!");       
+        console.log("WARNING: Passing options in draw() is deprecated. Pass options to the constructur or use setOptions() instead!");
         this.setOptions(options);
     }
 
@@ -1034,13 +1034,13 @@ links.Timeline.prototype.reflowAxis = function() {
     size.axis.line = axisLine;
     size.axis.height = axisHeight;
     size.axis.labelMajorTop = options.axisOnTop ? 0 : axisLine +
-        (options.showMinorLabels ? characterMinorHeight : 0);
+    (options.showMinorLabels ? characterMinorHeight : 0);
     size.axis.labelMinorTop = options.axisOnTop ?
         (options.showMajorLabels ? characterMajorHeight : 0) :
         axisLine;
     size.axis.lineMinorTop = options.axisOnTop ? size.axis.labelMinorTop : 0;
     size.axis.lineMinorHeight = options.showMajorLabels ?
-        size.frameHeight - characterMajorHeight:
+    size.frameHeight - characterMajorHeight:
         size.frameHeight;
     if (axisDom && axisDom.minorLines && axisDom.minorLines.length) {
         size.axis.lineMinorWidth = axisDom.minorLines[0].offsetWidth;
@@ -1652,8 +1652,8 @@ links.Timeline.prototype.recalcItems = function () {
         // calculate top positions of the group labels and lines
         var eventMargin = options.eventMargin,
             top = options.axisOnTop ?
-                options.eventMarginAxis + eventMargin/2 :
-                size.contentHeight - options.eventMarginAxis + eventMargin/ 2,
+            options.eventMarginAxis + eventMargin/2 :
+            size.contentHeight - options.eventMarginAxis + eventMargin/ 2,
             axisHeight = size.axis.height;
 
         for (i = 0, iMax = groups.length; i < iMax; i++) {
@@ -1883,7 +1883,7 @@ links.Timeline.prototype.repaintGroups = function() {
     frame.style.left = size.groupsLeft + "px";
     frame.style.width = (options.groupsWidth !== undefined) ?
         options.groupsWidth :
-        size.groupsWidth + "px";
+    size.groupsWidth + "px";
 
     // hide groups axis when there are no groups
     if (groups.length == 0) {
@@ -2719,7 +2719,7 @@ links.Timeline.prototype.onMouseDown = function(event) {
     }
 
     params.customTime = (params.target === dom.customTime ||
-        params.target.parentNode === dom.customTime) ?
+    params.target.parentNode === dom.customTime) ?
         this.customTime :
         undefined;
 
@@ -2841,7 +2841,7 @@ links.Timeline.prototype.onMouseMove = function (event) {
                 left = right;
                 item.start = this.screenToTime(left);
             }
-          this.trigger('change');
+            this.trigger('change');
         }
         else if (params.itemDragRight && options.timeChangeable) {
             // move the end of the item
@@ -2858,7 +2858,7 @@ links.Timeline.prototype.onMouseMove = function (event) {
                 right = left;
                 item.end = this.screenToTime(right);
             }
-          this.trigger('change');
+            this.trigger('change');
         }
         else if (options.timeChangeable) {
             // move the item
@@ -2986,7 +2986,7 @@ links.Timeline.prototype.onMouseUp = function (event) {
             // Note that the change can be canceled from within an event listener if
             // this listener calls the method cancelChange().
             this.trigger(params.addItem ? 'add' : 'changed');
-            
+
             //retrieve item data again to include changes made to it in the triggered event handlers
             item = this.items[params.itemIndex];
 
@@ -3743,9 +3743,9 @@ links.Timeline.ItemBox.prototype.reflow = function () {
         lineWidth = dom.line.offsetWidth,
         resized = (
             (this.dotHeight != dotHeight) ||
-                (this.dotWidth != dotWidth) ||
-                (this.lineWidth != lineWidth)
-            );
+            (this.dotWidth != dotWidth) ||
+            (this.lineWidth != lineWidth)
+        );
 
     this.dotHeight = dotHeight;
     this.dotWidth = dotWidth;
@@ -4400,13 +4400,13 @@ links.Timeline.ItemFloatingRange.prototype.isVisible = function (start, end) {
         return false;
     }
 
-	// NH check for no end value
-	if (this.end && this.start) {
-		return (this.end > start)
-			&& (this.start < end);
-	} else if (this.start) {
-		return (this.start < end);
-	} else if (this.end) {
+    // NH check for no end value
+    if (this.end && this.start) {
+        return (this.end > start)
+            && (this.start < end);
+    } else if (this.start) {
+        return (this.start < end);
+    } else if (this.end) {
         return (this.end > start);
     } else {return true;}
 };
@@ -4437,11 +4437,11 @@ links.Timeline.ItemFloatingRange.prototype.setPosition = function (left, right) 
  */
 links.Timeline.ItemFloatingRange.prototype.getLeft = function (timeline) {
     // NH check for no start value
-	if (this.start) {
-		return timeline.timeToScreen(this.start);
-	} else {
-		return 0;
-	}
+    if (this.start) {
+        return timeline.timeToScreen(this.start);
+    } else {
+        return 0;
+    }
 };
 
 /**
@@ -4452,11 +4452,11 @@ links.Timeline.ItemFloatingRange.prototype.getLeft = function (timeline) {
  */
 links.Timeline.ItemFloatingRange.prototype.getRight = function (timeline) {
     // NH check for no end value
-	if (this.end) {
-		return timeline.timeToScreen(this.end);
-	} else {
-		return timeline.size.contentWidth;
-	}
+    if (this.end) {
+        return timeline.timeToScreen(this.end);
+    } else {
+        return timeline.size.contentWidth;
+    }
 };
 
 /**
@@ -4498,9 +4498,9 @@ links.Timeline.ItemDot.prototype.reflow = function () {
         contentHeight = dom.content.offsetHeight,
         resized = (
             (this.dotHeight != dotHeight) ||
-                (this.dotWidth != dotWidth) ||
-                (this.contentHeight != contentHeight)
-            );
+            (this.dotWidth != dotWidth) ||
+            (this.contentHeight != contentHeight)
+        );
 
     this.dotHeight = dotHeight;
     this.dotWidth = dotWidth;
@@ -4782,7 +4782,7 @@ links.Timeline.prototype.getCluster = function (index) {
     var clusterData = {},
         cluster = this.clusters[index],
         clusterItems = cluster.items;
-    
+
     clusterData.start = new Date(cluster.start.valueOf());
     if (cluster.type) {
         clusterData.type = cluster.type;
@@ -4985,14 +4985,14 @@ links.Timeline.prototype.getGroup = function (groupName) {
             groups = groups.sort(function (a, b) {
                 if (a.content > b.content) {
                     return 1;
-		        }
-		        if (a.content < b.content) {
-		            return -1;
-		        }
-		        return 0;
-        	});
+                }
+                if (a.content < b.content) {
+                    return -1;
+                }
+                return 0;
+            });
         } else if (typeof(this.options.groupsOrder) == "function") {
-        	groups = groups.sort(this.options.groupsOrder)
+            groups = groups.sort(this.options.groupsOrder)
         }
 
         // rebuilt the groupIndexes
@@ -5312,8 +5312,8 @@ links.Timeline.prototype.stackCalculateFinal = function(items) {
         eventMargin = options.eventMargin,
         eventMarginAxis = options.eventMarginAxis,
         groupBase = (axisOnTop)
-                  ? size.axis.height + eventMarginAxis + eventMargin/2
-                  : size.contentHeight - eventMarginAxis - eventMargin/2,
+            ? size.axis.height + eventMarginAxis + eventMargin/2
+            : size.contentHeight - eventMarginAxis - eventMargin/2,
         groupedItems, groupFinalItems, finalItems = [];
 
     groupedItems = this.getItemsByGroup(items);
@@ -5338,7 +5338,7 @@ links.Timeline.prototype.stackCalculateFinal = function(items) {
         // initialize final positions and fill finalItems
         groupFinalItems = this.finalItemsPosition(groupedItems[group.content], groupBase, group);
         groupFinalItems.forEach(function(item) {
-           finalItems.push(item);
+            finalItems.push(item);
         });
 
         if (axisOnTop) {
@@ -5355,7 +5355,7 @@ links.Timeline.prototype.stackCalculateFinal = function(items) {
         // initialize final positions and fill finalItems
         groupFinalItems = this.finalItemsPosition(groupedItems["undefined"], groupBase);
         groupFinalItems.forEach(function(item) {
-           finalItems.push(item);
+            finalItems.push(item);
         });
     }
 
@@ -5399,12 +5399,12 @@ links.Timeline.prototype.finalItemsPosition = function(items, groupBase, group) 
         if (group) {
             if (axisOnTop) {
                 group.itemsHeight = (group.itemsHeight)
-                                  ? Math.max(group.itemsHeight, finalItem.bottom - groupBase)
-                                  : finalItem.height + eventMargin;
+                    ? Math.max(group.itemsHeight, finalItem.bottom - groupBase)
+                    : finalItem.height + eventMargin;
             } else {
                 group.itemsHeight = (group.itemsHeight)
-                                  ? Math.max(group.itemsHeight, groupBase - finalItem.top)
-                                  : finalItem.height + eventMargin;
+                    ? Math.max(group.itemsHeight, groupBase - finalItem.top)
+                    : finalItem.height + eventMargin;
             }
         }
     }
@@ -5427,7 +5427,7 @@ links.Timeline.prototype.initialItemsPosition = function(items, groupBase) {
             left = right - width;
 
         top = (axisOnTop) ? groupBase
-                          : groupBase - height;
+            : groupBase - height;
 
         bottom = top + height;
 
@@ -5561,9 +5561,9 @@ links.Timeline.prototype.collision = function(item1, item2, margin) {
 
     // calculate if there is overlap (collision)
     return (item1.left - margin < item2.right &&
-        item1.right + margin > item2.left &&
-        item1.top - margin < item2.bottom &&
-        item1.bottom + margin > item2.top);
+    item1.right + margin > item2.left &&
+    item1.top - margin < item2.bottom &&
+    item1.bottom + margin > item2.top);
 };
 
 
@@ -5885,7 +5885,7 @@ links.Timeline.ClusterGenerator.prototype.getClusters = function (scale, maxItem
                         var cluster;
                         var title = 'Cluster containing ' + count +
                             ' events. Zoom in to see the individual events.';
-                        var content = '<div title="' + title + '">' + count + ' events</div>';
+                        var content = '<div title="' + title + '" data-cluster-index="' + clusters.length + '" class="timeline-cluster">' + count + ' events</div>';
                         var group = item.group ? item.group.content : undefined;
                         if (containsRanges) {
                             // boxes and/or ranges
@@ -5935,117 +5935,117 @@ links.Timeline.ClusterGenerator.prototype.getClusters = function (scale, maxItem
  * Event listener (singleton)
  */
 links.events = links.events || {
-    'listeners': [],
+        'listeners': [],
 
-    /**
-     * Find a single listener by its object
-     * @param {Object} object
-     * @return {Number} index  -1 when not found
-     */
-    'indexOf': function (object) {
-        var listeners = this.listeners;
-        for (var i = 0, iMax = this.listeners.length; i < iMax; i++) {
-            var listener = listeners[i];
-            if (listener && listener.object == object) {
-                return i;
+        /**
+         * Find a single listener by its object
+         * @param {Object} object
+         * @return {Number} index  -1 when not found
+         */
+        'indexOf': function (object) {
+            var listeners = this.listeners;
+            for (var i = 0, iMax = this.listeners.length; i < iMax; i++) {
+                var listener = listeners[i];
+                if (listener && listener.object == object) {
+                    return i;
+                }
             }
-        }
-        return -1;
-    },
+            return -1;
+        },
 
-    /**
-     * Add an event listener
-     * @param {Object} object
-     * @param {String} event       The name of an event, for example 'select'
-     * @param {function} callback  The callback method, called when the
-     *                             event takes place
-     */
-    'addListener': function (object, event, callback) {
-        var index = this.indexOf(object);
-        var listener = this.listeners[index];
-        if (!listener) {
-            listener = {
-                'object': object,
-                'events': {}
-            };
-            this.listeners.push(listener);
-        }
+        /**
+         * Add an event listener
+         * @param {Object} object
+         * @param {String} event       The name of an event, for example 'select'
+         * @param {function} callback  The callback method, called when the
+         *                             event takes place
+         */
+        'addListener': function (object, event, callback) {
+            var index = this.indexOf(object);
+            var listener = this.listeners[index];
+            if (!listener) {
+                listener = {
+                    'object': object,
+                    'events': {}
+                };
+                this.listeners.push(listener);
+            }
 
-        var callbacks = listener.events[event];
-        if (!callbacks) {
-            callbacks = [];
-            listener.events[event] = callbacks;
-        }
-
-        // add the callback if it does not yet exist
-        if (callbacks.indexOf(callback) == -1) {
-            callbacks.push(callback);
-        }
-    },
-
-    /**
-     * Remove an event listener
-     * @param {Object} object
-     * @param {String} event       The name of an event, for example 'select'
-     * @param {function} callback  The registered callback method
-     */
-    'removeListener': function (object, event, callback) {
-        var index = this.indexOf(object);
-        var listener = this.listeners[index];
-        if (listener) {
             var callbacks = listener.events[event];
-            if (callbacks) {
-                var index = callbacks.indexOf(callback);
-                if (index != -1) {
-                    callbacks.splice(index, 1);
-                }
-
-                // remove the array when empty
-                if (callbacks.length == 0) {
-                    delete listener.events[event];
-                }
+            if (!callbacks) {
+                callbacks = [];
+                listener.events[event] = callbacks;
             }
 
-            // count the number of registered events. remove listener when empty
-            var count = 0;
-            var events = listener.events;
-            for (var e in events) {
-                if (events.hasOwnProperty(e)) {
-                    count++;
+            // add the callback if it does not yet exist
+            if (callbacks.indexOf(callback) == -1) {
+                callbacks.push(callback);
+            }
+        },
+
+        /**
+         * Remove an event listener
+         * @param {Object} object
+         * @param {String} event       The name of an event, for example 'select'
+         * @param {function} callback  The registered callback method
+         */
+        'removeListener': function (object, event, callback) {
+            var index = this.indexOf(object);
+            var listener = this.listeners[index];
+            if (listener) {
+                var callbacks = listener.events[event];
+                if (callbacks) {
+                    var index = callbacks.indexOf(callback);
+                    if (index != -1) {
+                        callbacks.splice(index, 1);
+                    }
+
+                    // remove the array when empty
+                    if (callbacks.length == 0) {
+                        delete listener.events[event];
+                    }
+                }
+
+                // count the number of registered events. remove listener when empty
+                var count = 0;
+                var events = listener.events;
+                for (var e in events) {
+                    if (events.hasOwnProperty(e)) {
+                        count++;
+                    }
+                }
+                if (count == 0) {
+                    delete this.listeners[index];
                 }
             }
-            if (count == 0) {
-                delete this.listeners[index];
+        },
+
+        /**
+         * Remove all registered event listeners
+         */
+        'removeAllListeners': function () {
+            this.listeners = [];
+        },
+
+        /**
+         * Trigger an event. All registered event handlers will be called
+         * @param {Object} object
+         * @param {String} event
+         * @param {Object} properties (optional)
+         */
+        'trigger': function (object, event, properties) {
+            var index = this.indexOf(object);
+            var listener = this.listeners[index];
+            if (listener) {
+                var callbacks = listener.events[event];
+                if (callbacks) {
+                    for (var i = 0, iMax = callbacks.length; i < iMax; i++) {
+                        callbacks[i](properties);
+                    }
+                }
             }
         }
-    },
-
-    /**
-     * Remove all registered event listeners
-     */
-    'removeAllListeners': function () {
-        this.listeners = [];
-    },
-
-    /**
-     * Trigger an event. All registered event handlers will be called
-     * @param {Object} object
-     * @param {String} event
-     * @param {Object} properties (optional)
-     */
-    'trigger': function (object, event, properties) {
-        var index = this.indexOf(object);
-        var listener = this.listeners[index];
-        if (listener) {
-            var callbacks = listener.events[event];
-            if (callbacks) {
-                for (var i = 0, iMax = callbacks.length; i < iMax; i++) {
-                    callbacks[i](properties);
-                }
-            }
-        }
-    }
-};
+    };
 
 
 /** ------------------------------------------------------------------------ **/
@@ -6989,12 +6989,12 @@ links.Timeline.parseJSONDate = function (date) {
     if (m) {
         var offset = m[2]
             ? (3600000 * m[2]) // hrs offset
-            + (60000 * m[3] * (m[2] / Math.abs(m[2]))) // mins offset
+        + (60000 * m[3] * (m[2] / Math.abs(m[2]))) // mins offset
             : 0;
 
         return new Date(
             (1 * m[1]) // ticks
-                + offset
+            + offset
         );
     }
 
