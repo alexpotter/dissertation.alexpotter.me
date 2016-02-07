@@ -15,7 +15,7 @@ use Carbon;
 use File;
 use Storage;
 use Patienttimeline\Event;
-use Patienttimeline\timeLine;
+use Patienttimeline\TimeLine;
 
 class AdminController extends Controller
 {
@@ -57,6 +57,7 @@ class AdminController extends Controller
     /**
      * Handle an authentication attempt.
      *
+     * @param Request $request
      * @return Response
      */
     public function authenticate(Request $request)
@@ -101,8 +102,8 @@ class AdminController extends Controller
      */
     public function updateSpecialtySetting(Request $request)
     {
-        $event = new Event();
-        $return = $event->updateEventStatus($request->input('specialtyId'));
+        $event = Event::where('id', $request->input('specialtyId'))->first();
+        $return = $event->updateEventStatus();
         return response(json_encode($return['responseBody']), $return['status'])
             ->header('Content-Type', 'application/json');
     }
@@ -113,8 +114,8 @@ class AdminController extends Controller
      */
     public function updateClusterMaxSetting(Request $request)
     {
-        $timeLine = new timeLine();
-        $return = $timeLine->updateTimeLineMaxCluster($request->input('timeLineClusterMax'), $request->input('setting_code'));
+        $timeLine = TimeLine::where('setting_code', $request->input('setting_code'))->first();
+        $return = $timeLine->updateTimeLineMaxCluster($request->input('timeLineClusterMax'));
         return response(json_encode($return['responseBody']), $return['status'])
             ->header('Content-Type', 'application/json');
     }

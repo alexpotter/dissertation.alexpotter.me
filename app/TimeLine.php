@@ -3,24 +3,22 @@
 namespace Patienttimeline;
 
 use DB;
+use Illuminate\Database\Eloquent\Model;
 use Mockery\CountValidator\Exception;
 
-class timeLine
+class TimeLine extends Model
 {
-    public function _construct()
-    {
-
-    }
+    protected $table = 'time_line_settings';
 
     /**
-     * @param $input
      * @param $code
      * @return array
      */
-    public function updateTimeLineMaxCluster($input, $code)
+    public function updateTimeLineMaxCluster($code)
     {
         try {
-            DB::table('time_line_settings')->where('setting_code', $code)->update(['setting' => $input]);
+            $this->setting = $code;
+            $this->save();
             return array(
                 'status' => 200,
                 'responseBody' => array(
