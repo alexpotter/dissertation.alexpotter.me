@@ -13,7 +13,6 @@
     <!-- HTML5 shim, for IE6-8 support of HTML elements-->
     <!--if lt IE 9
     script(src='https://html5shim.googlecode.com/svn/trunk/html5.js')
-
     -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
@@ -21,10 +20,13 @@
     <script src="{{ url('timeline/timeline.js') }}"></script>
     <script type="text/javascript" src="{{ url('assets/js/google.js') }}"></script><!-- Scripts -->
     <script src="{{ url( 'assets/js/bootstrap.js' ) }}"></script>
+    <script src="{{ url('assets/js/all.js') }}"></script>
     <!-- CSS-->
     <link rel="stylesheet" href="{{ url('timeline/timeline.css') }}">
     <link rel="stylesheet" href="{{ url('assets/css/frontend/timeline.css') }}">
     <link href="{{ url('assets/css/app.css') }}" rel="stylesheet">
+    <link href="{{ url('assets/css/pnotify.css') }}" rel='stylesheet'>
+
 
     <script type="text/javascript">
         google.load("visualization", "1");
@@ -92,13 +94,15 @@
 
         function onSelect() {
             var sel = timeline.getSelection();
-
             if (sel.length) {
                 if (sel[0].row != undefined) {
                     var row = sel[0].row;
                     console.log("event " + row + " selected");
                     localStorage.setItem("eventType", "row");
                     localStorage.setItem("eventId", row);
+
+                    var data = timeline.getData(row).Gf[0].c;
+                    localStorage.setItem("eventData", JSON.stringify(data));
                 }
             }
             if (sel[0].cluster || sel[0].cluster != undefined) {
@@ -117,11 +121,29 @@
                 var eventId = localStorage.eventId; // Extract info from data-* attributes
                 // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
                 // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+
+                $.ajax({
+                    url: '{{ url('patient/get/event') }}',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        "_token": '{{ csrf_token() }}',
+                        "data": JSON.parse(localStorage.getItem('eventData'))
+                    }
+                }).done(function(data) {
+                    pNotifyMessage('Success', 'Patient notes successfully gathered', 'success');
+                }).fail(function(jqXHR, status, thrownError) {
+                    var responseText = jQuery.parseJSON(jqXHR.responseText);
+                    pNotifyMessage('Something went wrong', responseText['error'], 'error');
+                });
+
                 var modal = $(this)
                 modal.find('.modal-title').text('Event ' + eventId);
                 modal.find('.modal-body input').val(eventId);
-                modal.find('#eventInputFromButton').html(typeClicked + ' clicked: ' + eventId
-                        + '<br>Now fire AJAX request to get notes. Map time line ID to event ID. Local storage?');
+                modal.find(
+                        '#eventInputFromButton').html(typeClicked + ' clicked: ' + eventId
+                        + '<br>Now fire AJAX request to get notes. Map time line ID to event ID. Local storage?'
+                );
             });
         });
     </script>

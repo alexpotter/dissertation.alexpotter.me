@@ -3,12 +3,15 @@
 namespace PatientTimeLine\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use PatientTimeLine\Event;
 use PatientTimeLine\Events;
 use PatientTimeLine\Http\Requests;
 use PatientTimeLine\Http\Controllers\Controller;
 
 use DB;
 use PatientTimeLine\EventSpecialtyCode;
+use PatientTimeLine\TimeLineSettings;
 
 class FrontendController extends Controller
 {
@@ -43,7 +46,7 @@ class FrontendController extends Controller
             'patientId' => $id,
             'patientData' => $events->prepareEventDataForTemplate($id),
             'patientEvents' => $events->getAllEventsWithCodes($id),
-            'timeLineClusterMaxSettings' => DB::table('time_line_settings')->where('setting_code', '=', 'cluster_max')->first()
+            'timeLineClusterMaxSettings' => TimeLineSettings::where('setting_code', '=', 'cluster_max')->first()
         ));
     }
 
@@ -67,10 +70,24 @@ class FrontendController extends Controller
         }
         else
         {
+            $request->session()->put('patientId', $request->input('patientName'));
             return response(json_encode(array(
                 'url' => url('patient/'.$request->input('patientName')),
                 'status' => 'success'
             )), 200, array('application/json'));
         }
+    }
+
+    /**
+     * @param Request $request
+     * @return $this
+     */
+    public function getEvent(Request $request)
+    {
+        $event = new Event();
+        $response = $event->getEvent($request->input('data'), $request->session()->get('patientId'));
+
+        return response(json_encode($response['responseBody']), $response['status'])
+            ->header('Content-Type', 'application/json');
     }
 }
