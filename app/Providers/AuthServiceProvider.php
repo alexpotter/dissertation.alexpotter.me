@@ -1,6 +1,6 @@
 <?php
 
-namespace Patienttimeline\Providers;
+namespace PatientTimeLine\Providers;
 
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -13,7 +13,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'Patienttimeline\Model' => 'Patienttimeline\Policies\ModelPolicy',
+        'PatientTimeLine\Model' => 'PatientTimeLine\Policies\ModelPolicy',
     ];
 
     /**

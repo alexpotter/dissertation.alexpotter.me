@@ -1,6 +1,6 @@
 <?php
 
-namespace Patienttimeline\Jobs;
+namespace PatientTimeLine\Jobs;
 
 use Illuminate\Bus\Queueable;
 

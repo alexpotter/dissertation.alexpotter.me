@@ -1,6 +1,6 @@
 <?php
 
-namespace Patienttimeline\Http;
+namespace PatientTimeLine\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -13,11 +13,11 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
-        \Patienttimeline\Http\Middleware\EncryptCookies::class,
+        \PatientTimeLine\Http\Middleware\EncryptCookies::class,
         \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
         \Illuminate\Session\Middleware\StartSession::class,
         \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-        \Patienttimeline\Http\Middleware\VerifyCsrfToken::class,
+        \PatientTimeLine\Http\Middleware\VerifyCsrfToken::class,
     ];
 
     /**
@@ -26,8 +26,8 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => \Patienttimeline\Http\Middleware\Authenticate::class,
+        'auth' => \PatientTimeLine\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'guest' => \Patienttimeline\Http\Middleware\RedirectIfAuthenticated::class,
+        'guest' => \PatientTimeLine\Http\Middleware\RedirectIfAuthenticated::class,
     ];
 }

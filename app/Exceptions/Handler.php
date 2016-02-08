@@ -1,6 +1,6 @@
 <?php
 
-namespace Patienttimeline\Exceptions;
+namespace PatientTimeLine\Exceptions;
 
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;

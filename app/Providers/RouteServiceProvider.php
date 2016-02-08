@@ -1,6 +1,6 @@
 <?php
 
-namespace Patienttimeline\Providers;
+namespace PatientTimeLine\Providers;
 
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -14,7 +14,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $namespace = 'Patienttimeline\Http\Controllers';
+    protected $namespace = 'PatientTimeLine\Http\Controllers';
 
     /**
      * Define your route model bindings, pattern filters, etc.

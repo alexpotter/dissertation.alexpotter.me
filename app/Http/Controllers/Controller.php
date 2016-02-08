@@ -1,6 +1,6 @@
 <?php
 
-namespace Patienttimeline\Http\Controllers;
+namespace PatientTimeLine\Http\Controllers;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;

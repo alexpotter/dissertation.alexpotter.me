@@ -1,10 +1,10 @@
 <?php
 
-namespace Patienttimeline\Http\Controllers\Auth;
+namespace PatientTimeLine\Http\Controllers\Auth;
 
-use Patienttimeline\User;
+use PatientTimeLine\User;
 use Validator;
-use Patienttimeline\Http\Controllers\Controller;
+use PatientTimeLine\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 

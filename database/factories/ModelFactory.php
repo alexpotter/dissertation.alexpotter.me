@@ -11,7 +11,7 @@
 |
 */
 
-$factory->define(Patienttimeline\User::class, function (Faker\Generator $faker) {
+$factory->define(PatientTimeLine\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->email,

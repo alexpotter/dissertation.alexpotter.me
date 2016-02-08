@@ -1,6 +1,6 @@
 <?php
 
-namespace Patienttimeline\Console\Commands;
+namespace PatientTimeLine\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Inspiring;

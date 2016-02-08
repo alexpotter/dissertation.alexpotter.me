@@ -140,10 +140,10 @@ return [
         /*
          * Application Service Providers...
          */
-        Patienttimeline\Providers\AppServiceProvider::class,
-        Patienttimeline\Providers\AuthServiceProvider::class,
-        Patienttimeline\Providers\EventServiceProvider::class,
-        Patienttimeline\Providers\RouteServiceProvider::class,
+        PatientTimeLine\Providers\AppServiceProvider::class,
+        PatientTimeLine\Providers\AuthServiceProvider::class,
+        PatientTimeLine\Providers\EventServiceProvider::class,
+        PatientTimeLine\Providers\RouteServiceProvider::class,
 
     ],
 

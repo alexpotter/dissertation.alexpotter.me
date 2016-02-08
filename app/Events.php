@@ -1,6 +1,6 @@
 <?php
 
-namespace Patienttimeline;
+namespace PatientTimeLine;
 
 use Illuminate\Support\Facades\DB;
 
@@ -37,7 +37,7 @@ class Events
 
         foreach ($this->getAllEventsWithCodes($id) as $event)
         {
-            $clinicalEvent = new Event();
+            $clinicalEvent = new EventSpecialtyCode();
 
             $content = ($event->DISPLAY_NAME != '') ? $event->DISPLAY_NAME : 'Unknown';
 

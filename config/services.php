@@ -30,7 +30,7 @@ return [
     ],
 
     'stripe' => [
-        'model'  => Patienttimeline\User::class,
+        'model'  => PatientTimeLine\User::class,
         'key'    => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],

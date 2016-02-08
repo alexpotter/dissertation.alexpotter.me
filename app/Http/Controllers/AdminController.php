@@ -1,10 +1,10 @@
 <?php
 
-namespace Patienttimeline\Http\Controllers;
+namespace PatientTimeLine\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Patienttimeline\Http\Requests;
-use Patienttimeline\Http\Controllers\Controller;
+use PatientTimeLine\Http\Requests;
+use PatientTimeLine\Http\Controllers\Controller;
 
 use Mockery\CountValidator\Exception;
 use Response;
@@ -14,8 +14,8 @@ use QueryException;
 use Carbon;
 use File;
 use Storage;
-use Patienttimeline\Event;
-use Patienttimeline\TimeLine;
+use PatientTimeLine\EventSpecialtyCode;
+use PatientTimeLine\TimeLine;
 
 class AdminController extends Controller
 {
@@ -102,7 +102,7 @@ class AdminController extends Controller
      */
     public function updateSpecialtySetting(Request $request)
     {
-        $event = Event::where('id', $request->input('specialtyId'))->first();
+        $event = EventSpecialtyCode::where('id', $request->input('specialtyId'))->first();
         $return = $event->updateEventStatus();
         return response(json_encode($return['responseBody']), $return['status'])
             ->header('Content-Type', 'application/json');

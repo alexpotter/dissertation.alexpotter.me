@@ -1,6 +1,6 @@
 <?php
 
-namespace Patienttimeline\Http\Middleware;
+namespace PatientTimeLine\Http\Middleware;
 
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
 

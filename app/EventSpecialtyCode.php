@@ -1,12 +1,12 @@
 <?php
 
-namespace Patienttimeline;
+namespace PatientTimeLine;
 
 use DB;
 use Illuminate\Database\Eloquent\Model;
 use Mockery\CountValidator\Exception;
 
-class Event extends Model
+class EventSpecialtyCodea extends Model
 {
     protected $table = 'event_specialty';
 

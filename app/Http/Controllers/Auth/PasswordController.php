@@ -1,8 +1,8 @@
 <?php
 
-namespace Patienttimeline\Http\Controllers\Auth;
+namespace PatientTimeLine\Http\Controllers\Auth;
 
-use Patienttimeline\Http\Controllers\Controller;
+use PatientTimeLine\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class PasswordController extends Controller

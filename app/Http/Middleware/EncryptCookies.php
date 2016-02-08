@@ -1,6 +1,6 @@
 <?php
 
-namespace Patienttimeline\Http\Middleware;
+namespace PatientTimeLine\Http\Middleware;
 
 use Illuminate\Cookie\Middleware\EncryptCookies as BaseEncrypter;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Patienttimeline\Providers;
+namespace PatientTimeLine\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

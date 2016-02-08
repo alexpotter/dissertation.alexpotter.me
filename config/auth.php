@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'model' => Patienttimeline\User::class,
+    'model' => PatientTimeLine\User::class,
 
     /*
     |--------------------------------------------------------------------------

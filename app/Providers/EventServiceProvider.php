@@ -1,6 +1,6 @@
 <?php
 
-namespace Patienttimeline\Providers;
+namespace PatientTimeLine\Providers;
 
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -13,8 +13,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'Patienttimeline\Events\SomeEvent' => [
-            'Patienttimeline\Listeners\EventListener',
+        'PatientTimeLine\Events\SomeEvent' => [
+            'PatientTimeLine\Listeners\EventListener',
         ],
     ];
 

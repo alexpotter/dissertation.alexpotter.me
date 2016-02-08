@@ -1,6 +1,6 @@
 <?php
 
-namespace Patienttimeline\Http\Requests;
+namespace PatientTimeLine\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

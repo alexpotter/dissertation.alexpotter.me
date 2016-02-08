@@ -1,6 +1,6 @@
 <?php
 
-namespace Patienttimeline;
+namespace PatientTimeLine;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;

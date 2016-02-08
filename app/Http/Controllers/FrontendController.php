@@ -1,14 +1,14 @@
 <?php
 
-namespace Patienttimeline\Http\Controllers;
+namespace PatientTimeLine\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Patienttimeline\Events;
-use Patienttimeline\Http\Requests;
-use Patienttimeline\Http\Controllers\Controller;
+use PatientTimeLine\Events;
+use PatientTimeLine\Http\Requests;
+use PatientTimeLine\Http\Controllers\Controller;
 
 use DB;
-use Patienttimeline\Event;
+use PatientTimeLine\EventSpecialtyCode;
 
 class FrontendController extends Controller
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Patienttimeline\Events;
+namespace PatientTimeLine\Events;
 
 abstract class Event
 {

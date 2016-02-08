@@ -1,6 +1,6 @@
 <?php
 
-namespace Patienttimeline\Console;
+namespace PatientTimeLine\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        \Patienttimeline\Console\Commands\Inspire::class,
+        \PatientTimeLine\Console\Commands\Inspire::class,
     ];
 
     /**
