@@ -98,26 +98,28 @@
                 if (sel[0].row != undefined) {
                     var row = sel[0].row;
                     console.log("event " + row + " selected");
-                    localStorage.setItem("eventType", "row");
                     localStorage.setItem("eventId", row);
 
                     var data = timeline.getData(row).Gf[0].c;
                     localStorage.setItem("eventData", JSON.stringify(data));
+                    $('#patientNotesHiddenButton').trigger('click');
                 }
             }
             if (sel[0].cluster || sel[0].cluster != undefined) {
                 console.log("cluster " + sel[0].cluster + " selected");
-                localStorage.setItem("eventType", "cluster");
                 localStorage.setItem("eventId", sel[0].cluster);
-            }
 
-            $('#patientNotesHiddenButton').trigger('click');
+                var data = timeline.getCluster(sel[0].cluster);
+                var items = data.items;
+                localStorage.setItem("clusterData", JSON.stringify(items));
+
+                $('#clusterEventsHiddenButton').trigger('click');
+            }
         }
 
         $(function() {
             // Bootstrap modal
             $('#patientNotes').on('show.bs.modal', function (event) {
-                var typeClicked = localStorage.eventType;
                 var eventId = localStorage.eventId; // Extract info from data-* attributes
                 // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
                 // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
@@ -141,7 +143,25 @@
                 modal.find('.modal-title').text('Event ' + eventId);
                 modal.find('.modal-body input').val(eventId);
                 modal.find(
-                        '#eventInputFromButton').html(typeClicked + ' clicked: ' + eventId
+                        '#eventInputFromButton').html('Row clicked: ' + eventId
+                        + '<br>Now fire AJAX request to get notes. Map time line ID to event ID. Local storage?'
+                );
+            });
+
+            // Bootstrap modal
+            $('#clusterEvents').on('show.bs.modal', function (event) {var typeClicked = localStorage.eventType;
+                var eventId = localStorage.eventId; // Extract info from data-* attributes
+                // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+                // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+
+                var events = JSON.parse(localStorage.getItem('clusterData'));
+                console.log(events);
+
+                var modal = $(this)
+                modal.find('.modal-title').text('Event ' + eventId);
+                modal.find('.modal-body input').val(eventId);
+                modal.find(
+                        '#eventInputFromButton').html('Cluster clicked: ' + eventId
                         + '<br>Now fire AJAX request to get notes. Map time line ID to event ID. Local storage?'
                 );
             });
@@ -156,7 +176,25 @@
 <div id="patientTimeLine"></div>
 {{--Modal--}}
 <button type="button" id="patientNotesHiddenButton" class="btn btn-primary" data-toggle="modal" data-target="#patientNotes" style="display: none;"></button>
+<button type="button" id="clusterEventsHiddenButton" class="btn btn-primary" data-toggle="modal" data-target="#clusterEvents" style="display: none;"></button>
 <div class="modal fade" id="patientNotes" tabindex="-1" role="dialog" aria-labelledby="patientNotesLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">New message</h4>
+            </div>
+            <div class="modal-body">
+                <div id="eventInputFromButton"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Send message</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="clusterEvents" tabindex="-1" role="dialog" aria-labelledby="patientNotesLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

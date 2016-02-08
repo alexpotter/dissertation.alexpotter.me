@@ -9,6 +9,11 @@ class Event extends Model
 {
     protected $table = 'SBCDS_CLINICAL_EVENT';
 
+    /**
+     * @param $inputs
+     * @param $id
+     * @return array
+     */
     public function getEvent($inputs, $id)
     {
         $queryParams = array();
