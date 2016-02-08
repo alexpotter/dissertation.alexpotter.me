@@ -9,7 +9,6 @@ use PatientTimeLine\Events;
 use PatientTimeLine\Http\Requests;
 use PatientTimeLine\Http\Controllers\Controller;
 
-use DB;
 use PatientTimeLine\EventSpecialtyCode;
 use PatientTimeLine\TimeLineSettings;
 
@@ -59,7 +58,7 @@ class FrontendController extends Controller
         // If many patients return many as JSON
         // If one patient return redirect
         // Else return 400
-        $patient = DB::table('SBCDS_CLINICAL_EVENT')->where('BCI_ID', $request->input('patientName'))->orderBy('EVENT_DATE', 'asc')->get();
+        $patient = Event::where('BCI_ID', $request->input('patientName'))->orderBy('EVENT_DATE', 'asc')->get();
 
         if(!$patient)
         {
