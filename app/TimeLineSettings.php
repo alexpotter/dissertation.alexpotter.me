@@ -6,7 +6,7 @@ use DB;
 use Illuminate\Database\Eloquent\Model;
 use Mockery\CountValidator\Exception;
 
-class TimeLine extends Model
+class TimeLineSettings extends Model
 {
     protected $table = 'time_line_settings';
 

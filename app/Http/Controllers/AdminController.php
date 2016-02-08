@@ -15,7 +15,7 @@ use Carbon;
 use File;
 use Storage;
 use PatientTimeLine\EventSpecialtyCode;
-use PatientTimeLine\TimeLine;
+use PatientTimeLine\TimeLineSettings;
 
 class AdminController extends Controller
 {
@@ -114,7 +114,7 @@ class AdminController extends Controller
      */
     public function updateClusterMaxSetting(Request $request)
     {
-        $timeLine = TimeLine::where('setting_code', $request->input('setting_code'))->first();
+        $timeLine = TimeLineSettings::where('setting_code', $request->input('setting_code'))->first();
         $return = $timeLine->updateTimeLineMaxCluster($request->input('timeLineClusterMax'));
         return response(json_encode($return['responseBody']), $return['status'])
             ->header('Content-Type', 'application/json');
