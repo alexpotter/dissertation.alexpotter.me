@@ -6,7 +6,7 @@ use DB;
 use Illuminate\Database\Eloquent\Model;
 use Mockery\CountValidator\Exception;
 
-class EventSpecialtyCodea extends Model
+class EventSpecialtyCode extends Model
 {
     protected $table = 'event_specialty';
 
