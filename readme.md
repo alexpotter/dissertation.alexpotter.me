@@ -14,8 +14,6 @@ run `git remote add origin git@github.com:alexpotter/dissertation.alexpotter.me.
 
 run `git pull origin master`
 
-run `gulp`
-
 Open .env and alter the following to match your database credentials
 
     DB_HOST=127.0.0.1
