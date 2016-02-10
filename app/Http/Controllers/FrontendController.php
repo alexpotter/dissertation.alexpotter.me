@@ -2,6 +2,7 @@
 
 namespace PatientTimeLine\Http\Controllers;
 
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use PatientTimeLine\Event;
@@ -10,6 +11,7 @@ use PatientTimeLine\Http\Requests;
 use PatientTimeLine\Http\Controllers\Controller;
 
 use PatientTimeLine\EventSpecialtyCode;
+use PatientTimeLine\Patient;
 use PatientTimeLine\TimeLineSettings;
 
 class FrontendController extends Controller
@@ -31,10 +33,12 @@ class FrontendController extends Controller
      */
     public function patient($id)
     {
-        $events = new Events();
+        $patient = new Patient($id);
 
-        if(!$events->getAllEventsWithCodes($id))
-        {
+        try {
+            $patientEvents = $patient->getPatientEvents();
+        }
+        catch (Exception $e) {
             return view('frontend/patient/notFound');
         }
 
@@ -43,8 +47,7 @@ class FrontendController extends Controller
         // That will then be rendered onto the patients page
         return view('frontend/patient/record', array(
             'patientId' => $id,
-            'patientData' => $events->prepareEventDataForTemplate($id),
-            'patientEvents' => $events->getAllEventsWithCodes($id),
+            'patientEvents' => $patientEvents,
             'timeLineClusterMaxSettings' => TimeLineSettings::where('setting_code', 'cluster_max')->first()
         ));
     }

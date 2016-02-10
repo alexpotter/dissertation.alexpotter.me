@@ -63,8 +63,8 @@
             data.addColumn('string', 'className');
 
             data.addRows([
-                    @foreach($patientData as $data)
-                        [new Date({{ $data['start']['year'] }}, {{ $data['start']['month'] - 1 }}, {{ $data['start']['day'] }}, {{ $data['start']['hour'] }}, {{ $data['start']['minute'] }}, {{ $data['start']['second'] }}, 0), '{{ $data['content'] }}', '{{  $data['group'] }}', '{{ $data['type'] }}', '{{  $data['cssClass'] }}'],
+                    @foreach($patientEvents as $event)
+                        [new Date({{ $event['start']['year'] }}, {{ $event['start']['month'] - 1 }}, {{ $event['start']['day'] }}, {{ $event['start']['hour'] }}, {{ $event['start']['minute'] }}, {{ $event['start']['second'] }}, 0), '{{ $event['content'] }}', '{{  $event['group'] }}', '{{ $event['type'] }}', '{{  $event['cssClass'] }}'],
                     @endforeach
             ]);
 

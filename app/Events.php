@@ -2,6 +2,7 @@
 
 namespace PatientTimeLine;
 
+use Exception;
 use Illuminate\Support\Facades\DB;
 
 class Events
@@ -28,12 +29,18 @@ class Events
     /**
      * @param $id
      * @return array
+     * @throws Exception
      */
     public function prepareEventDataForTemplate($id)
     {
         // Patient data
         $patientData = array();
         $counter = 0;
+
+        if (!$this->getAllEventsWithCodes($id))
+        {
+            throw new Exception('No events found');
+        }
 
         foreach ($this->getAllEventsWithCodes($id) as $event)
         {
