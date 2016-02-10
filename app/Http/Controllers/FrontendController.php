@@ -45,7 +45,7 @@ class FrontendController extends Controller
             'patientId' => $id,
             'patientData' => $events->prepareEventDataForTemplate($id),
             'patientEvents' => $events->getAllEventsWithCodes($id),
-            'timeLineClusterMaxSettings' => TimeLineSettings::where('setting_code', '=', 'cluster_max')->first()
+            'timeLineClusterMaxSettings' => TimeLineSettings::where('setting_code', 'cluster_max')->first()
         ));
     }
 
@@ -58,7 +58,7 @@ class FrontendController extends Controller
         // If many patients return many as JSON
         // If one patient return redirect
         // Else return 400
-        $patient = Event::where('BCI_ID', $request->input('patientName'))->orderBy('EVENT_DATE', 'asc')->first();
+        $patient = Event::where('BCI_ID', $request->patientId)->orderBy('EVENT_DATE', 'asc')->first();
 
         if(!$patient)
         {
@@ -69,8 +69,9 @@ class FrontendController extends Controller
         }
         else
         {
+            $request->session()->put('patientId', $request->patientId);
             return response(json_encode(array(
-                'url' => route('patientTimeLine', $request->patientName),
+                'url' => route('patientTimeLine', $request->patientId),
                 'status' => 'success'
             )), 200)->header('Content-Type', 'application/json');
         }

@@ -34,7 +34,8 @@
 <div id="search">
     <button type="button" class="close">×</button>
     <form id="patientSearchForm" name="patientSearch" method="post" action="{{ url('/patient/search') }}">
-        <input name="patientName" id="patientName" type="search" value="" placeholder="Patient ID..." autocomplete="off">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        <input name="patientId" id="patientId" type="search" value="" placeholder="Patient ID..." autocomplete="off">
         <button type="submit" class="btn btn-primary">Search</button>
     </form>
 </div>
@@ -59,10 +60,7 @@
             $.ajax({
                         type: "POST",
                         url: '{{ url('patient/search') }}',
-                        data: {
-                            _token: '{{ csrf_token() }}',
-                            patientName: $('#patientName').val()
-                        },
+                        data: $( this).serialize(),
                         dataType: 'json'
                     })
                     .done(function(data) {
