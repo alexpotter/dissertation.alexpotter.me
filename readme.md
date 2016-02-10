@@ -1,3 +1,30 @@
+# SBCDS Cancer Time Line
+
+## Installation
+
+run `composer create-project laravel/laravel timeline "5.1.*"`
+
+run `git init`
+
+run `git remote add origin git@github.com:alexpotter/dissertation.alexpotter.me.git`
+
+^^ This command requires me to add your servers key to my repository. For security reasons. ^^
+
+run `git pull origin master`
+
+run `npm install`
+
+run `gulp`
+
+Open .env and alter the following to match your database credentials
+
+    DB_HOST=127.0.0.1
+    DB_DATABASE=homestead
+    DB_USERNAME=homestead
+    DB_PASSWORD=secret
+
+run `php artisan migrate`
+
 ## Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
