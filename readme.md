@@ -4,6 +4,8 @@
 
 run `composer create-project laravel/laravel timeline "5.1.*"`
 
+run `composer update`
+
 run `git init`
 
 run `git remote add origin git@github.com:alexpotter/dissertation.alexpotter.me.git`
@@ -11,8 +13,6 @@ run `git remote add origin git@github.com:alexpotter/dissertation.alexpotter.me.
 ^^ This command requires me to add your servers key to my repository. For security reasons. ^^
 
 run `git pull origin master`
-
-run `npm install`
 
 run `gulp`
 

@@ -58,22 +58,21 @@ class FrontendController extends Controller
         // If many patients return many as JSON
         // If one patient return redirect
         // Else return 400
-        $patient = Event::where('BCI_ID', $request->input('patientName'))->orderBy('EVENT_DATE', 'asc')->get();
+        $patient = Event::where('BCI_ID', $request->input('patientName'))->orderBy('EVENT_DATE', 'asc')->first();
 
         if(!$patient)
         {
             return response(json_encode(array(
                 'status' => 'fail',
                 'msg' => 'No patient found'
-            )), 400, array('application/json'));
+            )), 400)->header('Content-Type', 'application/json');
         }
         else
         {
-            $request->session()->put('patientId', $request->input('patientName'));
             return response(json_encode(array(
-                'url' => url('patient/'.$request->input('patientName')),
+                'url' => route('patientTimeLine', $request->patientName),
                 'status' => 'success'
-            )), 200, array('application/json'));
+            )), 200)->header('Content-Type', 'application/json');
         }
     }
 

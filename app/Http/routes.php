@@ -12,28 +12,28 @@
 */
 
 Route::get('/', 'FrontendController@index');
-Route::get('/patient/{id}', 'FrontendController@patient');
-Route::get('/patient/search', function() {
+Route::get('patient/{id}', 'FrontendController@patient')->name('patientTimeLine');
+Route::get('patient/search', function() {
     abort(404, 'Page not found');
 });
-Route::get('/patient/get/records', function() {
+Route::get('patient/get/records', function() {
     abort(404, 'Page not found');
 });
 
 // Maybe set records to route through a login page should enough time remain
-Route::post('/patient/search', 'FrontendController@searchPatient');
-Route::post('/patient/get/records', 'FrontendController@getRecords');
-Route::post('/patient/get/event', 'FrontendController@getEvent');
+Route::post('patient/search', 'FrontendController@searchPatient');
+Route::post('patient/get/records', 'FrontendController@getRecords');
+Route::post('patient/get/event', 'FrontendController@getEvent');
 
 Route::group(['prefix' => 'admin'], function() {
     Route::get('/', 'AdminController@index');
-    Route::get('/login', 'AdminController@loginPage');
-    Route::post('/login', 'AdminController@authenticate');
-    Route::get('/logout', 'AdminController@logout');
+    Route::get('login', 'AdminController@loginPage');
+    Route::post('login', 'AdminController@authenticate');
+    Route::get('logout', 'AdminController@logout');
 
     Route::group(['prefix' => '/timeline', 'middleware' => 'auth'], function() {
-        Route::get('/settings', 'AdminController@timeLineSettings');
-        Route::post('/specialty/update', 'AdminController@updateSpecialtySetting');
-        Route::post('/cluster-max/update', 'AdminController@updateClusterMaxSetting');
+        Route::get('settings', 'AdminController@timeLineSettings');
+        Route::post('specialty/update', 'AdminController@updateSpecialtySetting');
+        Route::post('cluster-max/update', 'AdminController@updateClusterMaxSetting');
     });
 });
