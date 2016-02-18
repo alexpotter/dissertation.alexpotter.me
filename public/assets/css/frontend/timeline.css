@@ -23,7 +23,7 @@
 }
 
 div.timeline-event-cluster {
-  border-color: blue !important;
-  color: blue !important;
+  border-color: #000000 !important;
+  color: red !important;
   background-color: #ffffff !important;
 }
