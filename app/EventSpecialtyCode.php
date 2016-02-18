@@ -16,8 +16,6 @@ class EventSpecialtyCode extends Model
      */
     public function checkEventIsNotExcluded($specialty)
     {
-        // Change $specialty to code within function call
-//        if (DB::table('event_specialty')->where('specialty_code', $code)->where('disabled', 1)->get())
         if (DB::table('event_specialty')->where('specialty', $specialty)->where('disabled', 1)->get())
         {
             return false;
@@ -26,16 +24,6 @@ class EventSpecialtyCode extends Model
         {
             return true;
         }
-    }
-
-    /**
-     * @param $eventCode
-     * @return mixed
-     */
-    public function getEventNameByCode($eventCode)
-    {
-        $eventCodeRow = $this->where('specialty_code', '=', $eventCode)->get();
-        return ($eventCodeRow) ? $eventCodeRow[0]->specialty : $eventCode;
     }
 
     /**

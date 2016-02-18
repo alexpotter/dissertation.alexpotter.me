@@ -21,7 +21,7 @@ function enableDisableSpecialty(id, event, element, url, token) {
             else {
                 var icon = '<i class="fa fa-check green"></i>';
             }
-            tr.html('<td>' + data.code + '</td><td>' + data.specialty + '</td><td><a href="#" onclick="enableDisableSpecialty(' + id +', event, this, \'' + data.url + '\', \'' + data.token + '\')">' + icon + '</a></td>');
+            tr.html('<td>' + data.specialty + '</td><td><a href="#" onclick="enableDisableSpecialty(' + id +', event, this, \'' + data.url + '\', \'' + data.token + '\')">' + icon + '</a></td>');
         })
         .fail(function(jqXHR, status, thrownError) {
             var responseText = jQuery.parseJSON(jqXHR.responseText);

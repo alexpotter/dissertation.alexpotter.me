@@ -14,13 +14,11 @@
                     <h2>Active event types</h2>
                     <table class="table table-hover" id="time-line-settings">
                         <tr>
-                            <th>Specialty Code</th>
                             <th>Specialty</th>
                             <th>Enabled</th>
                         </tr>
                         @foreach($eventSpecialties as $eventSpecialty)
                             <tr id="eventRow{{ $eventSpecialty->id }}">
-                                <td>{{ $eventSpecialty->specialty_code }}</td>
                                 <td>{{ $eventSpecialty->specialty }}</td>
                                 <td>
                                     <a href="#" onclick="enableDisableSpecialty({{ $eventSpecialty->id }}, event, this, '{{ url('admin/timeline/specialty/update') }}', '{{ csrf_token() }}')">

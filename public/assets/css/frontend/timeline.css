@@ -1,19 +1,25 @@
-.RAD {
+.Radiology {
   border-color: #ff0000 !important;
   color: #ff0000 !important;
   background-color: yellow !important;
 }
 
-.CAN {
+.Cancer-Care {
   border-color: green !important;
   color: green !important;
   background-color: #ffffff !important;
 }
 
-.HI {
+.Biochemistry {
   border-color: #000000 !important;
   color: #000000 !important;
   background-color: orange !important;
+}
+
+.Microbiology {
+  border-color: #FFFFFF !important;
+  color: #FFFFFF !important;
+  background-color: blue !important;
 }
 
 div.timeline-event-cluster {

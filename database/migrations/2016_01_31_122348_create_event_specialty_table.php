@@ -15,8 +15,8 @@ class CreateEventSpecialtyTable extends Migration
     {
         Schema::create('event_specialty', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('specialty_code')->unique();
-            $table->string('specialty');
+            //$table->string('specialty_code')->unique();
+            $table->string('specialty')->unique();
             $table->boolean('disabled');
             $table->integer('added_by')->unsigned();
             $table->timestamps();
@@ -24,15 +24,48 @@ class CreateEventSpecialtyTable extends Migration
         });
         DB::table('event_specialty')->insert([
             [
-                'specialty_code'    => 'CC',
-                'specialty'         => 'Clinical Chemistry',
+                'specialty'         => 'Radiology',
                 'disabled'          => 1,
                 'added_by'          => 1,
                 'created_at'        => Carbon::now(),
                 'updated_at'        => Carbon::now()
             ],
             [
-                'specialty_code'    => 'HM',
+                'specialty'         => 'CT',
+                'disabled'          => 1,
+                'added_by'          => 1,
+                'created_at'        => Carbon::now(),
+                'updated_at'        => Carbon::now()
+            ],
+            [
+                'specialty'         => 'Nuclear Medicine',
+                'disabled'          => 1,
+                'added_by'          => 1,
+                'created_at'        => Carbon::now(),
+                'updated_at'        => Carbon::now()
+            ],
+            [
+                'specialty'         => 'Gynae Cytology',
+                'disabled'          => 1,
+                'added_by'          => 1,
+                'created_at'        => Carbon::now(),
+                'updated_at'        => Carbon::now()
+            ],
+            [
+                'specialty'         => 'Histopathology',
+                'disabled'          => 1,
+                'added_by'          => 1,
+                'created_at'        => Carbon::now(),
+                'updated_at'        => Carbon::now()
+            ],
+            [
+                'specialty'         => 'Biochemistry',
+                'disabled'          => 1,
+                'added_by'          => 1,
+                'created_at'        => Carbon::now(),
+                'updated_at'        => Carbon::now()
+            ],
+            [
                 'specialty'         => 'Haematology',
                 'disabled'          => 1,
                 'added_by'          => 1,
@@ -40,7 +73,6 @@ class CreateEventSpecialtyTable extends Migration
                 'updated_at'        => Carbon::now()
             ],
             [
-                'specialty_code'    => 'MM',
                 'specialty'         => 'Microbiology',
                 'disabled'          => 1,
                 'added_by'          => 1,
@@ -48,79 +80,41 @@ class CreateEventSpecialtyTable extends Migration
                 'updated_at'        => Carbon::now()
             ],
             [
-                'specialty_code'    => 'RAD',
-                'specialty'         => 'Radiology',
-                'disabled'          => 0,
-                'added_by'          => 1,
-                'created_at'        => Carbon::now(),
-                'updated_at'        => Carbon::now()
-            ],
-            [
-                'specialty_code'    => 'BT',
-                'specialty'         => 'Blood Transfusion',
+                'specialty'         => 'MRI',
                 'disabled'          => 1,
                 'added_by'          => 1,
                 'created_at'        => Carbon::now(),
                 'updated_at'        => Carbon::now()
             ],
             [
-                'specialty_code'    => 'HI',
-                'specialty'         => 'Histopathology',
-                'disabled'          => 0,
-                'added_by'          => 1,
-                'created_at'        => Carbon::now(),
-                'updated_at'        => Carbon::now()
-            ],
-            [
-                'specialty_code'    => 'CY',
-                'specialty'         => 'Cytology',
-                'disabled'          => 0,
-                'added_by'          => 1,
-                'created_at'        => Carbon::now(),
-                'updated_at'        => Carbon::now()
-            ],
-            [
-                'specialty_code'    => 'NG',
-                'specialty'         => 'Non-Gynae Cytology',
-                'disabled'          => 0,
-                'added_by'          => 1,
-                'created_at'        => Carbon::now(),
-                'updated_at'        => Carbon::now()
-            ],
-            [
-                'specialty_code'    => 'IM',
-                'specialty'         => 'Immunology',
+                'specialty'         => 'Ultrasound',
                 'disabled'          => 1,
                 'added_by'          => 1,
                 'created_at'        => Carbon::now(),
                 'updated_at'        => Carbon::now()
             ],
             [
-                'specialty_code'    => 'MED',
-                'specialty'         => 'Medicine',
-                'disabled'          => 0,
+                'specialty'         => 'Mammography',
+                'disabled'          => 1,
                 'added_by'          => 1,
                 'created_at'        => Carbon::now(),
                 'updated_at'        => Carbon::now()
             ],
             [
-                'specialty_code'    => 'SUR',
-                'specialty'         => 'Surgery',
-                'disabled'          => 0,
-                'added_by'          => 1,
-                'created_at'        => Carbon::now(),
-                'updated_at'        => Carbon::now()
-            ],
-            [
-                'specialty_code'    => 'CAN',
                 'specialty'         => 'Cancer Care',
-                'disabled'          => 0,
+                'disabled'          => 1,
                 'added_by'          => 1,
                 'created_at'        => Carbon::now(),
                 'updated_at'        => Carbon::now()
             ],
             [
-                'specialty_code'    => 'VV',
+                'specialty'         => 'Ophthalmology',
+                'disabled'          => 1,
+                'added_by'          => 1,
+                'created_at'        => Carbon::now(),
+                'updated_at'        => Carbon::now()
+            ],
+            [
                 'specialty'         => 'Virology',
                 'disabled'          => 1,
                 'added_by'          => 1,
@@ -128,37 +122,82 @@ class CreateEventSpecialtyTable extends Migration
                 'updated_at'        => Carbon::now()
             ],
             [
-                'specialty_code'    => 'CAR',
-                'specialty'         => 'Cardiothoracic',
-                'disabled'          => 0,
-                'added_by'          => 1,
-                'created_at'        => Carbon::now(),
-                'updated_at'        => Carbon::now()
-            ],
-            [
-                'specialty_code'    => 'PO',
-                'specialty'         => 'To Be Deleted',
+                'specialty'         => 'Point of Care Testing',
                 'disabled'          => 1,
                 'added_by'          => 1,
                 'created_at'        => Carbon::now(),
                 'updated_at'        => Carbon::now()
             ],
             [
-                'specialty_code'    => 'HCHC',
-                'specialty'         => 'To Be Deleted',
+                'specialty'         => 'Medicine & Elderly Care',
                 'disabled'          => 1,
                 'added_by'          => 1,
                 'created_at'        => Carbon::now(),
                 'updated_at'        => Carbon::now()
             ],
             [
-                'specialty_code'    => 'CSS',
-                'specialty'         => 'To Be Deleted',
+                'specialty'         => 'Surgery',
                 'disabled'          => 1,
                 'added_by'          => 1,
                 'created_at'        => Carbon::now(),
                 'updated_at'        => Carbon::now()
-            ]
+            ],
+            [
+                'specialty'         => 'Trauma and Orthopaedics',
+                'disabled'          => 1,
+                'added_by'          => 1,
+                'created_at'        => Carbon::now(),
+                'updated_at'        => Carbon::now()
+            ],
+            [
+                'specialty'         => 'Obstetrics, Midwifery & Gynaecology',
+                'disabled'          => 1,
+                'added_by'          => 1,
+                'created_at'        => Carbon::now(),
+                'updated_at'        => Carbon::now()
+            ],
+            [
+                'specialty'         => 'Blood transfusion',
+                'disabled'          => 1,
+                'added_by'          => 1,
+                'created_at'        => Carbon::now(),
+                'updated_at'        => Carbon::now()
+            ],
+            [
+                'specialty'         => 'Non-Gynae Cytology',
+                'disabled'          => 1,
+                'added_by'          => 1,
+                'created_at'        => Carbon::now(),
+                'updated_at'        => Carbon::now()
+            ],
+            [
+                'specialty'         => 'Southern Health NHS Foundation Trust',
+                'disabled'          => 1,
+                'added_by'          => 1,
+                'created_at'        => Carbon::now(),
+                'updated_at'        => Carbon::now()
+            ],
+            [
+                'specialty'         => 'Obstetrics',
+                'disabled'          => 1,
+                'added_by'          => 1,
+                'created_at'        => Carbon::now(),
+                'updated_at'        => Carbon::now()
+            ],
+            [
+                'specialty'         => 'Immunology',
+                'disabled'          => 1,
+                'added_by'          => 1,
+                'created_at'        => Carbon::now(),
+                'updated_at'        => Carbon::now()
+            ],
+            [
+                'specialty'         => 'eQuest Requesting',
+                'disabled'          => 1,
+                'added_by'          => 1,
+                'created_at'        => Carbon::now(),
+                'updated_at'        => Carbon::now()
+            ],
         ]);
     }
 
