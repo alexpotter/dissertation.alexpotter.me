@@ -137,6 +137,7 @@
                     pNotifyMessage('Success', 'Patient notes successfully gathered', 'success');
                 }).fail(function(jqXHR, status, thrownError) {
                     var responseText = jQuery.parseJSON(jqXHR.responseText);
+                    modal.find('#eventInfo').html('');
                     $.each(responseText.data, function(index, element) {
                         modal.find('#eventInfo').append('Index: ' + index + '. Element: ' + element + '<br>');
                     });
