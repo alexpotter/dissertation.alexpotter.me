@@ -163,10 +163,17 @@
                 var modal = $(this)
                 modal.find('.modal-title').text('Event ' + eventId);
                 modal.find('.modal-body input').val(eventId);
-                modal.find(
-                        '#clusterDiv').html('Cluster clicked: ' + eventId
-                        + '<br>Now fire AJAX request to get notes. Map time line ID to event ID. Local storage?'
+                modal.find('#clusterDiv').html('Cluster clicked: ' + eventId
+                        + '<br>Now fire AJAX request to get notes. Map time line ID to event ID. Local storage?<br><br>'
                 );
+
+                $.each(events, function(index, element) {
+                    modal.find('#clusterDiv').append('<h4>Cluster: ' + index + '</h4>');
+                    $.each(element, function(index, element) {
+                        modal.find('#clusterDiv').append('Index: ' + index + '. Element: ' + element + '<br>');
+                    });
+                    modal.find('#clusterDiv').append('<br><br>');
+                });
             });
         });
     </script>
