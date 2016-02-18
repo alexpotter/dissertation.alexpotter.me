@@ -14,11 +14,16 @@ class Events
     public function getAllEventsWithCodes($id)
     {
         // SELECT data from db
+//        $events = DB::table('SBCDS_CLINICAL_EVENT')
+//            ->leftJoin('SBCDS_EVENT_CODES', function($join) {
+//                $join->on('SBCDS_EVENT_CODES.REQUEST_CODE', '=', 'SBCDS_CLINICAL_EVENT.EVENT_CONTEXT')
+//                    ->on('SBCDS_EVENT_CODES.REQUEST_TYPE', '=', 'SBCDS_CLINICAL_EVENT.SPECIALTY');
+//            })
+//            ->where('BCI_ID', $id)
+//            ->orderBy('EVENT_DATE', 'asc')
+//            ->get();
+
         $events = DB::table('SBCDS_CLINICAL_EVENT')
-            ->leftJoin('SBCDS_EVENT_CODES', function($join) {
-                $join->on('SBCDS_EVENT_CODES.REQUEST_CODE', '=', 'SBCDS_CLINICAL_EVENT.EVENT_CONTEXT')
-                    ->on('SBCDS_EVENT_CODES.REQUEST_TYPE', '=', 'SBCDS_CLINICAL_EVENT.SPECIALTY');
-            })
             ->where('BCI_ID', $id)
             ->orderBy('EVENT_DATE', 'asc')
             ->get();
@@ -46,9 +51,9 @@ class Events
         {
             $clinicalEvent = new EventSpecialtyCode();
 
-            $content = ($event->DISPLAY_NAME != '') ? $event->DISPLAY_NAME : 'Unknown';
+            $content = ($event->EVENT_DETAIL != '') ? $event->EVENT_DETAIL : 'Unknown';
 
-            if ($clinicalEvent->checkEventIsNotExcluded($event->SPECIALTY))
+            if ($clinicalEvent->checkEventIsNotExcluded($event->CLINICAL_SPECIALTY))
             {
                 $dateTime = explode(' ', $event->EVENT_DATE);
                 $dateArray = explode('-', $dateTime[0]);
@@ -62,11 +67,14 @@ class Events
                         'day' => $dateArray[2],
                         'hour' => $timeArray[0] + 1,
                         'minute' => $timeArray[1],
-                        'second' => $timeArray[2]
+                        'second' => 0
+//                        'second' => $timeArray[2]
                     ),
-                    'group' => $clinicalEvent->getEventNameByCode($event->SPECIALTY),
-                    'cssClass' => $event->SPECIALTY,
-                    'type' => 'box'
+//                    'group' => $clinicalEvent->getEventNameByCode($event->SPECIALTY),
+                    'group' => $event->CLINICAL_SPECIALTY,
+                    'cssClass' => $event->CLINICAL_SPECIALTY,
+                    'type' => 'box',
+                    'id' => $event->UNIQUE_ID
                 );
 
                 $counter ++;

@@ -11,12 +11,14 @@ class EventSpecialtyCode extends Model
     protected $table = 'event_specialty';
 
     /**
-     * @param $code
+     * @param $specialty
      * @return bool
      */
-    public function checkEventIsNotExcluded($code)
+    public function checkEventIsNotExcluded($specialty)
     {
-        if (DB::table('event_specialty')->where('specialty_code', '=', $code)->where('disabled', '=', 1)->get())
+        // Change $specialty to code within function call
+//        if (DB::table('event_specialty')->where('specialty_code', $code)->where('disabled', 1)->get())
+        if (DB::table('event_specialty')->where('specialty', $specialty)->where('disabled', 1)->get())
         {
             return false;
         }
@@ -32,7 +34,7 @@ class EventSpecialtyCode extends Model
      */
     public function getEventNameByCode($eventCode)
     {
-        $eventCodeRow = DB::table('event_specialty')->where('specialty_code', '=', $eventCode)->get();
+        $eventCodeRow = $this->where('specialty_code', '=', $eventCode)->get();
         return ($eventCodeRow) ? $eventCodeRow[0]->specialty : $eventCode;
     }
 

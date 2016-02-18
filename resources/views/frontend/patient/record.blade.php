@@ -61,10 +61,11 @@
             data.addColumn('string', 'group');
             data.addColumn('string', 'type');
             data.addColumn('string', 'className');
+            data.addColumn('string', 'id');
 
             data.addRows([
                     @foreach($patientEvents as $event)
-                        [new Date({{ $event['start']['year'] }}, {{ $event['start']['month'] - 1 }}, {{ $event['start']['day'] }}, {{ $event['start']['hour'] }}, {{ $event['start']['minute'] }}, {{ $event['start']['second'] }}, 0), '{{ $event['content'] }}', '{{  $event['group'] }}', '{{ $event['type'] }}', '{{  $event['cssClass'] }}'],
+                        [new Date({{ $event['start']['year'] }}, {{ $event['start']['month'] - 1 }}, {{ $event['start']['day'] }}, {{ $event['start']['hour'] }}, {{ $event['start']['minute'] }}, {{ $event['start']['second'] }}, 0), '{{ $event['content'] }}', '{{  $event['group'] }}', '{{ $event['type'] }}', '{{  $event['cssClass'] }}', '{{ $event['id'] }}'],
                     @endforeach
             ]);
 
