@@ -101,7 +101,7 @@
                     console.log("event " + row + " selected");
                     localStorage.setItem("eventId", row);
 
-                    var data = timeline.getData(row).Gf[0].c;
+                    var data = timeline.getData(row).Gf[row].c;
                     localStorage.setItem("unique_id", data[5]['v']);
                     $('#patientNotesHiddenButton').trigger('click');
                 }
