@@ -16,14 +16,12 @@
                         <tr>
                             <th>Specialty Code</th>
                             <th>Specialty</th>
-                            <th>Disabled</th>
-                            <th>Enable/Disable</th>
+                            <th>Enabled</th>
                         </tr>
                         @foreach($eventSpecialties as $eventSpecialty)
                             <tr id="eventRow{{ $eventSpecialty->id }}">
                                 <td>{{ $eventSpecialty->specialty_code }}</td>
                                 <td>{{ $eventSpecialty->specialty }}</td>
-                                <td>{{ ($eventSpecialty->disabled) ? 'Yes' : 'No' }}</td>
                                 <td>
                                     <a href="#" onclick="enableDisableSpecialty({{ $eventSpecialty->id }}, event, this, '{{ url('admin/timeline/specialty/update') }}', '{{ csrf_token() }}')">
                                         {!! ($eventSpecialty->disabled) ? '<i class="fa fa-times red"></i>' : '<i class="fa fa-check green"></i>' !!}

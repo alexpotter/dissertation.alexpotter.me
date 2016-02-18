@@ -16,14 +16,12 @@ function enableDisableSpecialty(id, event, element, url, token) {
         .done(function(data) {
             pNotifyMessage('Success', 'Specialty has been updated', 'success');
             if (data.enabledOrDisabled == 'Disabled') {
-                var disabled = 'Yes';
                 var icon = '<i class="fa fa-times red"></i>';
             }
             else {
-                var disabled = 'No';
                 var icon = '<i class="fa fa-check green"></i>';
             }
-            tr.html('<td>' + data.code + '</td><td>' + data.specialty + '</td><td>' + disabled + '</td><td><a href="#" onclick="enableDisableSpecialty(' + id +', event, this, \'' + data.url + '\', \'' + data.token + '\')">' + icon + '</a></td>');
+            tr.html('<td>' + data.code + '</td><td>' + data.specialty + '</td><td><a href="#" onclick="enableDisableSpecialty(' + id +', event, this, \'' + data.url + '\', \'' + data.token + '\')">' + icon + '</a></td>');
         })
         .fail(function(jqXHR, status, thrownError) {
             var responseText = jQuery.parseJSON(jqXHR.responseText);
