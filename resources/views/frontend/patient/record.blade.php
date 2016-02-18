@@ -102,7 +102,7 @@
                     localStorage.setItem("eventId", row);
 
                     var data = timeline.getData(row).Gf[0].c;
-                    localStorage.setItem("eventData", JSON.stringify(data));
+                    localStorage.setItem("unique_id", data[5]['v']);
                     $('#patientNotesHiddenButton').trigger('click');
                 }
             }
@@ -131,20 +131,22 @@
                     dataType: 'json',
                     data: {
                         "_token": '{{ csrf_token() }}',
-                        "data": JSON.parse(localStorage.getItem('eventData'))
+                        "id": localStorage.getItem('unique_id')
                     }
                 }).done(function(data) {
                     pNotifyMessage('Success', 'Patient notes successfully gathered', 'success');
                 }).fail(function(jqXHR, status, thrownError) {
                     var responseText = jQuery.parseJSON(jqXHR.responseText);
+                    $.each(responseText.data, function(index, element) {
+                        modal.find('#eventInfo').append('Index: ' + index + '. Element: ' + element + '<br>');
+                    });
                     pNotifyMessage('Something went wrong', responseText['error'], 'error');
                 });
 
                 var modal = $(this)
                 modal.find('.modal-title').text('Event ' + eventId);
                 modal.find('.modal-body input').val(eventId);
-                modal.find(
-                        '#eventInputFromButton').html('Row clicked: ' + eventId
+                modal.find('#eventDiv').html('Row clicked: ' + eventId
                         + '<br>Now fire AJAX request to get notes. Map time line ID to event ID. Local storage?'
                 );
             });
@@ -162,7 +164,7 @@
                 modal.find('.modal-title').text('Event ' + eventId);
                 modal.find('.modal-body input').val(eventId);
                 modal.find(
-                        '#eventInputFromButton').html('Cluster clicked: ' + eventId
+                        '#clusterDiv').html('Cluster clicked: ' + eventId
                         + '<br>Now fire AJAX request to get notes. Map time line ID to event ID. Local storage?'
                 );
             });
@@ -186,7 +188,8 @@
                 <h4 class="modal-title" id="exampleModalLabel">New message</h4>
             </div>
             <div class="modal-body">
-                <div id="eventInputFromButton"></div>
+                <div id="eventDiv"></div>
+                <div id="eventInfo" style="padding-top: 30px;"></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -203,7 +206,7 @@
                 <h4 class="modal-title" id="exampleModalLabel">New message</h4>
             </div>
             <div class="modal-body">
-                <div id="eventInputFromButton"></div>
+                <div id="clusterDiv"></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

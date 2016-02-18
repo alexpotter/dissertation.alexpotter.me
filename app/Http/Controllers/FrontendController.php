@@ -87,7 +87,7 @@ class FrontendController extends Controller
     public function getEvent(Request $request)
     {
         $event = new Event();
-        $response = $event->getEvent($request->input('data'), $request->session()->get('patientId'));
+        $response = $event->getEvent($request->input('id'));
 
         return response(json_encode($response['responseBody']), $response['status'])
             ->header('Content-Type', 'application/json');
