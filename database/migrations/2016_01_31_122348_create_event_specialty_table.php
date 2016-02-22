@@ -22,183 +22,19 @@ class CreateEventSpecialtyTable extends Migration
             $table->timestamps();
             $table->foreign('added_by')->references('id')->on('users');
         });
-        DB::table('event_specialty')->insert([
-            [
-                'specialty'         => 'Radiology',
-                'disabled'          => 1,
+
+        $events = DB::table('SBCDS_CLINICAL_EVENT')->groupBy('CLINICAL_SPECIALTY')->get();
+
+        foreach($events as $event)
+        {
+            DB::table('event_specialty')->insert([
+                'specialty'         => $event->CLINICAL_SPECIALTY,
+                'disabled'          => 0,
                 'added_by'          => 1,
                 'created_at'        => Carbon::now(),
                 'updated_at'        => Carbon::now()
-            ],
-            [
-                'specialty'         => 'CT',
-                'disabled'          => 1,
-                'added_by'          => 1,
-                'created_at'        => Carbon::now(),
-                'updated_at'        => Carbon::now()
-            ],
-            [
-                'specialty'         => 'Nuclear Medicine',
-                'disabled'          => 1,
-                'added_by'          => 1,
-                'created_at'        => Carbon::now(),
-                'updated_at'        => Carbon::now()
-            ],
-            [
-                'specialty'         => 'Gynae Cytology',
-                'disabled'          => 1,
-                'added_by'          => 1,
-                'created_at'        => Carbon::now(),
-                'updated_at'        => Carbon::now()
-            ],
-            [
-                'specialty'         => 'Histopathology',
-                'disabled'          => 1,
-                'added_by'          => 1,
-                'created_at'        => Carbon::now(),
-                'updated_at'        => Carbon::now()
-            ],
-            [
-                'specialty'         => 'Biochemistry',
-                'disabled'          => 1,
-                'added_by'          => 1,
-                'created_at'        => Carbon::now(),
-                'updated_at'        => Carbon::now()
-            ],
-            [
-                'specialty'         => 'Haematology',
-                'disabled'          => 1,
-                'added_by'          => 1,
-                'created_at'        => Carbon::now(),
-                'updated_at'        => Carbon::now()
-            ],
-            [
-                'specialty'         => 'Microbiology',
-                'disabled'          => 1,
-                'added_by'          => 1,
-                'created_at'        => Carbon::now(),
-                'updated_at'        => Carbon::now()
-            ],
-            [
-                'specialty'         => 'MRI',
-                'disabled'          => 1,
-                'added_by'          => 1,
-                'created_at'        => Carbon::now(),
-                'updated_at'        => Carbon::now()
-            ],
-            [
-                'specialty'         => 'Ultrasound',
-                'disabled'          => 1,
-                'added_by'          => 1,
-                'created_at'        => Carbon::now(),
-                'updated_at'        => Carbon::now()
-            ],
-            [
-                'specialty'         => 'Mammography',
-                'disabled'          => 1,
-                'added_by'          => 1,
-                'created_at'        => Carbon::now(),
-                'updated_at'        => Carbon::now()
-            ],
-            [
-                'specialty'         => 'Cancer Care',
-                'disabled'          => 1,
-                'added_by'          => 1,
-                'created_at'        => Carbon::now(),
-                'updated_at'        => Carbon::now()
-            ],
-            [
-                'specialty'         => 'Ophthalmology',
-                'disabled'          => 1,
-                'added_by'          => 1,
-                'created_at'        => Carbon::now(),
-                'updated_at'        => Carbon::now()
-            ],
-            [
-                'specialty'         => 'Virology',
-                'disabled'          => 1,
-                'added_by'          => 1,
-                'created_at'        => Carbon::now(),
-                'updated_at'        => Carbon::now()
-            ],
-            [
-                'specialty'         => 'Point of Care Testing',
-                'disabled'          => 1,
-                'added_by'          => 1,
-                'created_at'        => Carbon::now(),
-                'updated_at'        => Carbon::now()
-            ],
-            [
-                'specialty'         => 'Medicine & Elderly Care',
-                'disabled'          => 1,
-                'added_by'          => 1,
-                'created_at'        => Carbon::now(),
-                'updated_at'        => Carbon::now()
-            ],
-            [
-                'specialty'         => 'Surgery',
-                'disabled'          => 1,
-                'added_by'          => 1,
-                'created_at'        => Carbon::now(),
-                'updated_at'        => Carbon::now()
-            ],
-            [
-                'specialty'         => 'Trauma and Orthopaedics',
-                'disabled'          => 1,
-                'added_by'          => 1,
-                'created_at'        => Carbon::now(),
-                'updated_at'        => Carbon::now()
-            ],
-            [
-                'specialty'         => 'Obstetrics, Midwifery & Gynaecology',
-                'disabled'          => 1,
-                'added_by'          => 1,
-                'created_at'        => Carbon::now(),
-                'updated_at'        => Carbon::now()
-            ],
-            [
-                'specialty'         => 'Blood transfusion',
-                'disabled'          => 1,
-                'added_by'          => 1,
-                'created_at'        => Carbon::now(),
-                'updated_at'        => Carbon::now()
-            ],
-            [
-                'specialty'         => 'Non-Gynae Cytology',
-                'disabled'          => 1,
-                'added_by'          => 1,
-                'created_at'        => Carbon::now(),
-                'updated_at'        => Carbon::now()
-            ],
-            [
-                'specialty'         => 'Southern Health NHS Foundation Trust',
-                'disabled'          => 1,
-                'added_by'          => 1,
-                'created_at'        => Carbon::now(),
-                'updated_at'        => Carbon::now()
-            ],
-            [
-                'specialty'         => 'Obstetrics',
-                'disabled'          => 1,
-                'added_by'          => 1,
-                'created_at'        => Carbon::now(),
-                'updated_at'        => Carbon::now()
-            ],
-            [
-                'specialty'         => 'Immunology',
-                'disabled'          => 1,
-                'added_by'          => 1,
-                'created_at'        => Carbon::now(),
-                'updated_at'        => Carbon::now()
-            ],
-            [
-                'specialty'         => 'eQuest Requesting',
-                'disabled'          => 1,
-                'added_by'          => 1,
-                'created_at'        => Carbon::now(),
-                'updated_at'        => Carbon::now()
-            ],
-        ]);
+            ]);
+        }
     }
 
     /**
