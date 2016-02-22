@@ -46,4 +46,12 @@ class EventSpecialtyCode extends Model
             )
         );
     }
+
+    /**
+     * @return mixed
+     */
+    public function getEnabledEventSpecialties()
+    {
+        return $this->where('disabled', 0)->orderBy('specialty')->get();
+    }
 }

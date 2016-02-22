@@ -178,40 +178,47 @@
                     modal.find('#clusterDiv').append('<br><br>');
                 });
             });
-
-            $('#updateTimeLine').click(function() {
-                $.ajax({
-                    url: '{{ url('patient/time-line/redraw') }}',
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        "_token": '{{ csrf_token() }}',
-                        "activeEvents": 'foo'
-                    }
-                }).done(function(data) {
-                    timeline.setData();
-
-                    data = new google.visualization.DataTable();
-                    data.addColumn('datetime', 'start');
-                    data.addColumn('string', 'content');
-                    data.addColumn('string', 'group');
-                    data.addColumn('string', 'type');
-                    data.addColumn('string', 'className');
-                    data.addColumn('string', 'id');
-
-                    data.addRows([
-                        [new Date(1996, 8, 24, 10, 22, 0, 0), 'CHEST', 'Radiology', 'box', 'Radiology', 'I9612289-R110']
-                    ]);
-
-                    timeline.draw(data);
-                    pNotifyMessage('Success', 'Timeline successfully regenerated', 'success');
-
-                }).fail(function(jqXHR, status, thrownError) {
-                    var responseText = jQuery.parseJSON(jqXHR.responseText);
-                    pNotifyMessage('Something went wrong', responseText['error'], 'error');
-                });
-            });
         });
+
+        function redrawTimeLine() {
+            var $form = $('#updateVisibleSpecialties');
+
+            $.ajax({
+                url: '{{ url('patient/time-line/redraw') }}',
+                type: 'POST',
+                dataType: 'json',
+                data: $form.serialize()
+            }).done(function(events) {
+                timeline.setData();
+
+                data = new google.visualization.DataTable();
+                data.addColumn('datetime', 'start');
+                data.addColumn('string', 'content');
+                data.addColumn('string', 'group');
+                data.addColumn('string', 'type');
+                data.addColumn('string', 'className');
+                data.addColumn('string', 'id');
+
+                $.each(events, function(index, element) {
+                    data.addRow(
+                            [new Date(element.start.year, element.start.month, element.start.day, element.start.hour, element.start.minute, 0, 0),
+                                element.content,
+                                element.group,
+                                'box',
+                                element.cssClass,
+                                element.id
+                            ]
+                    );
+                });
+
+                timeline.draw(data);
+                pNotifyMessage('Success', 'Timeline successfully regenerated', 'success');
+
+            }).fail(function(jqXHR, status, thrownError) {
+                var responseText = jQuery.parseJSON(jqXHR.responseText);
+                pNotifyMessage('Something went wrong', responseText['error'], 'error');
+            });
+        }
     </script>
 </head>
 <body onload="drawVisualization();">
@@ -219,7 +226,16 @@
     <h1 style="text-align: center">Patient Data here</h1>
     <h2 style="text-align: center">{{ $patientId }}</h2>
 </div>
-<button type="button" class="btn btn-lg btn-danger" id="updateTimeLine">Update TL</button>
+<div class="col-xs-12" style="padding-bottom: 20px;">
+    <form id="updateVisibleSpecialties">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        @foreach($activeSpecialties as $specialty)
+            <label class="checkbox-inline" style="font-size: 14pt; padding-top: 10px;">
+                <input onchange="redrawTimeLine();" type="checkbox" name="enabledSpecialties[]" value="{{ $specialty->specialty }}" checked> {{ $specialty->specialty }}
+            </label>
+        @endforeach
+    </form>
+</div>
 <div id="patientTimeLine"></div>
 {{--Modal--}}
 <button type="button" id="patientNotesHiddenButton" class="btn btn-primary" data-toggle="modal" data-target="#patientNotes" style="display: none;"></button>

@@ -34,6 +34,7 @@ class FrontendController extends Controller
     public function patient($id)
     {
         $patient = new Patient($id);
+        $eventSpecialties = new EventSpecialtyCode();
 
         try {
             $patientEvents = $patient->getPatientEvents();
@@ -48,7 +49,8 @@ class FrontendController extends Controller
         return view('frontend/patient/timeline', array(
             'patientId' => $id,
             'patientEvents' => $patientEvents,
-            'timeLineClusterMaxSettings' => TimeLineSettings::where('setting_code', 'cluster_max')->first()
+            'timeLineClusterMaxSettings' => TimeLineSettings::where('setting_code', 'cluster_max')->first(),
+            'activeSpecialties' => $eventSpecialties->getEnabledEventSpecialties()
         ));
     }
 
@@ -93,9 +95,19 @@ class FrontendController extends Controller
             ->header('Content-Type', 'application/json');
     }
 
+    /**
+     * @param Request $request
+     * @return $this
+     * @throws Exception
+     */
     public function redrawTimeLine(Request $request)
     {
-        return response(json_encode('foo'), 200)
+        $patientEvents = new Events();
+
+        return response(json_encode($patientEvents->getEventsByEnabledSpecialtyCodes(
+            $request->session()->get('patientId'),
+            $request->input('enabledSpecialties')
+        )), 200)
             ->header('Content-Type', 'application/json');
     }
 }
