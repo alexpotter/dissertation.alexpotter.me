@@ -90,6 +90,9 @@
 
             // Add event listeners
             google.visualization.events.addListener(timeline, 'select', onSelect);
+            google.visualization.events.addListener(timeline, 'rangechanged', function() {
+                timeline.checkResize();
+            });
 
             // Draw our time line with the created data and options
             timeline.draw(data);
@@ -189,8 +192,6 @@
                 dataType: 'json',
                 data: $form.serialize()
             }).done(function(events) {
-                timeline.setData();
-
                 data = new google.visualization.DataTable();
                 data.addColumn('datetime', 'start');
                 data.addColumn('string', 'content');
@@ -211,7 +212,8 @@
                     );
                 });
 
-                timeline.draw(data);
+                timeline.setData(data);
+                timeline.checkResize();
 
             }).fail(function(jqXHR, status, thrownError) {
                 var responseText = jQuery.parseJSON(jqXHR.responseText);

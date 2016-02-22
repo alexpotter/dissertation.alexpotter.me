@@ -55,7 +55,7 @@ class Events
                         'year' => $dateArray[0],
                         'month' => $dateArray[1],
                         'day' => $dateArray[2],
-                        'hour' => $timeArray[0] + 1,
+                        'hour' => $timeArray[0],
                         'minute' => $timeArray[1],
                         'second' => 0
                     ),
@@ -110,7 +110,7 @@ class Events
                         'year' => $dateArray[0],
                         'month' => $dateArray[1],
                         'day' => $dateArray[2],
-                        'hour' => $timeArray[0] + 1,
+                        'hour' => $timeArray[0],
                         'minute' => $timeArray[1],
                         'second' => 0
                     ),
