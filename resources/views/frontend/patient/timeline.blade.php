@@ -212,7 +212,6 @@
                 });
 
                 timeline.draw(data);
-                pNotifyMessage('Success', 'Timeline successfully regenerated', 'success');
 
             }).fail(function(jqXHR, status, thrownError) {
                 var responseText = jQuery.parseJSON(jqXHR.responseText);
