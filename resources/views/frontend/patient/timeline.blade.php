@@ -71,6 +71,8 @@
 
             // specify options
             var options = {
+                'animate': false,
+                'animateZoom': false,
                 'width':  '100%',
                 'cluster': true,
                 'editable': false,
@@ -184,6 +186,7 @@
     <h1 style="text-align: center">Patient Data here</h1>
     <h2 style="text-align: center">{{ $patientId }}</h2>
 </div>
+<button type="button" class="btn btn-lg btn-danger" onclick="console.log('foo');">Update TL</button>
 <div id="patientTimeLine"></div>
 {{--Modal--}}
 <button type="button" id="patientNotesHiddenButton" class="btn btn-primary" data-toggle="modal" data-target="#patientNotes" style="display: none;"></button>

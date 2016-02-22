@@ -45,7 +45,7 @@ class FrontendController extends Controller
         // This will be used to return patient data
         // The id here will be inserted into the template to post to the above function
         // That will then be rendered onto the patients page
-        return view('frontend/patient/record', array(
+        return view('frontend/patient/timeline', array(
             'patientId' => $id,
             'patientEvents' => $patientEvents,
             'timeLineClusterMaxSettings' => TimeLineSettings::where('setting_code', 'cluster_max')->first()
