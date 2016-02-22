@@ -13,6 +13,7 @@
 
 Route::get('/', 'FrontendController@index');
 Route::get('patient/{id}', 'FrontendController@patient')->name('patientTimeLine');
+Route::post('patient/time-line/redraw', 'FrontendController@redrawTimeLine');
 Route::get('patient/search', function() {
     abort(404, 'Page not found');
 });

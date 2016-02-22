@@ -178,6 +178,39 @@
                     modal.find('#clusterDiv').append('<br><br>');
                 });
             });
+
+            $('#updateTimeLine').click(function() {
+                $.ajax({
+                    url: '{{ url('patient/time-line/redraw') }}',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        "_token": '{{ csrf_token() }}',
+                        "activeEvents": 'foo'
+                    }
+                }).done(function(data) {
+                    timeline.setData();
+
+                    data = new google.visualization.DataTable();
+                    data.addColumn('datetime', 'start');
+                    data.addColumn('string', 'content');
+                    data.addColumn('string', 'group');
+                    data.addColumn('string', 'type');
+                    data.addColumn('string', 'className');
+                    data.addColumn('string', 'id');
+
+                    data.addRows([
+                        [new Date(1996, 8, 24, 10, 22, 0, 0), 'CHEST', 'Radiology', 'box', 'Radiology', 'I9612289-R110']
+                    ]);
+
+                    timeline.draw(data);
+                    pNotifyMessage('Success', 'Timeline successfully regenerated', 'success');
+
+                }).fail(function(jqXHR, status, thrownError) {
+                    var responseText = jQuery.parseJSON(jqXHR.responseText);
+                    pNotifyMessage('Something went wrong', responseText['error'], 'error');
+                });
+            });
         });
     </script>
 </head>
@@ -186,7 +219,7 @@
     <h1 style="text-align: center">Patient Data here</h1>
     <h2 style="text-align: center">{{ $patientId }}</h2>
 </div>
-<button type="button" class="btn btn-lg btn-danger" onclick="console.log('foo');">Update TL</button>
+<button type="button" class="btn btn-lg btn-danger" id="updateTimeLine">Update TL</button>
 <div id="patientTimeLine"></div>
 {{--Modal--}}
 <button type="button" id="patientNotesHiddenButton" class="btn btn-primary" data-toggle="modal" data-target="#patientNotes" style="display: none;"></button>

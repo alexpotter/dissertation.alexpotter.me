@@ -92,4 +92,10 @@ class FrontendController extends Controller
         return response(json_encode($response['responseBody']), $response['status'])
             ->header('Content-Type', 'application/json');
     }
+
+    public function redrawTimeLine(Request $request)
+    {
+        return response(json_encode('foo'), 200)
+            ->header('Content-Type', 'application/json');
+    }
 }
