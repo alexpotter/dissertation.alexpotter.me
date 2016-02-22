@@ -89,6 +89,11 @@ class Events
             throw new Exception('No events found');
         }
 
+        if(!$specialtyCodes)
+        {
+            return null;
+        }
+
         foreach ($this->getAllEventsWithCodes($patientId) as $event)
         {
             $content = ($event->EVENT_DETAIL != '') ? $event->EVENT_DETAIL : 'Unknown';
