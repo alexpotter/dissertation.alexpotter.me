@@ -37,6 +37,12 @@
         var timeline;
         var data;
 
+        var eventId;
+        var uniqueId;
+        var clusterId;
+        var clusterData;
+        var patientId = {{ $patientId }};
+
         function getSelectedRow() {
             var row = undefined;
             var sel = timeline.getSelection();
@@ -104,20 +110,20 @@
                 if (sel[0].row != undefined) {
                     var row = sel[0].row;
                     console.log("event " + row + " selected");
-                    localStorage.setItem("eventId", row);
+                    eventId = row;
 
                     var data = timeline.getData(row).Gf[row].c;
-                    localStorage.setItem("unique_id", data[5]['v']);
+                    uniqueId = data[5]['v'];
                     $('#patientNotesHiddenButton').trigger('click');
                 }
             }
             if (sel[0].cluster || sel[0].cluster != undefined) {
                 console.log("cluster " + sel[0].cluster + " selected");
-                localStorage.setItem("eventId", sel[0].cluster);
+                clusterId = sel[0].cluster;
 
                 var data = timeline.getCluster(sel[0].cluster);
                 var items = data.items;
-                localStorage.setItem("clusterData", JSON.stringify(items));
+                clusterData = JSON.stringify(items);
 
                 $('#clusterEventsHiddenButton').trigger('click');
             }
@@ -136,7 +142,7 @@
                     dataType: 'json',
                     data: {
                         "_token": '{{ csrf_token() }}',
-                        "id": localStorage.getItem('unique_id')
+                        "id": uniqueId
                     }
                 }).done(function(data) {
                     pNotifyMessage('Success', 'Patient notes successfully gathered', 'success');
@@ -163,7 +169,7 @@
                 // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
                 // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 
-                var events = JSON.parse(localStorage.getItem('clusterData'));
+                var events = JSON.parse(clusterData);
                 console.log(events);
 
                 var modal = $(this)
@@ -190,6 +196,7 @@
 
         function redrawTimeLine() {
             var $form = $('#updateVisibleSpecialties');
+            $form.append('<input type="hidden" name="patientId" value="' + patientId + '">');
 
             $.ajax({
                 url: '{{ url('patient/time-line/redraw') }}',

@@ -63,9 +63,9 @@ class FrontendController extends Controller
         // If many patients return many as JSON
         // If one patient return redirect
         // Else return 400
-        $patient = Event::where('BCI_ID', $request->patientId)->orderBy('EVENT_DATE', 'asc')->first();
+        $patientExists = Event::where('BCI_ID', $request->patientId)->orderBy('EVENT_DATE', 'asc')->first();
 
-        if(!$patient)
+        if(!$patientExists)
         {
             return response(json_encode(array(
                 'status' => 'fail',
@@ -74,9 +74,9 @@ class FrontendController extends Controller
         }
         else
         {
-            $request->session()->put('patientId', $request->patientId);
             return response(json_encode(array(
                 'url' => route('patientTimeLine', $request->patientId),
+                'patientId' => $request->patientId,
                 'status' => 'success'
             )), 200)->header('Content-Type', 'application/json');
         }
@@ -105,7 +105,7 @@ class FrontendController extends Controller
         $patientEvents = new Events();
 
         return response(json_encode($patientEvents->getEventsByEnabledSpecialtyCodes(
-            $request->session()->get('patientId'),
+            $request->patientId,
             $request->input('enabledSpecialties')
         )), 200)
             ->header('Content-Type', 'application/json');
