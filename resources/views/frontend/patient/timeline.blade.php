@@ -181,6 +181,11 @@
                     modal.find('#clusterDiv').append('<br><br>');
                 });
             });
+
+            $( '#selectAllSpecialties' ).click( function () {
+                $( '#selectedSpecialties input' ).prop('checked', this.checked);
+                redrawTimeLine();
+            });
         });
 
         function redrawTimeLine() {
@@ -199,6 +204,12 @@
                 data.addColumn('string', 'type');
                 data.addColumn('string', 'className');
                 data.addColumn('string', 'id');
+
+                if (!events) {
+                    timeline.setData();
+                    timeline.checkResize();
+                    return;
+                }
 
                 $.each(events, function(index, element) {
                     data.addRow(
@@ -230,11 +241,16 @@
 <div class="col-xs-12" style="padding-bottom: 20px;">
     <form id="updateVisibleSpecialties">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        @foreach($activeSpecialties as $specialty)
-            <label class="checkbox-inline" style="font-size: 14pt; padding-top: 10px;">
-                <input onchange="redrawTimeLine();" type="checkbox" name="enabledSpecialties[]" value="{{ $specialty->specialty }}" checked> {{ $specialty->specialty }}
-            </label>
-        @endforeach
+        <label class="checkbox-inline" style="font-size: 14pt; padding-top: 10px;">
+            <input type="checkbox" name="enabledSpecialties[]" id="selectAllSpecialties" checked> Select all
+        </label>
+        <div id="selectedSpecialties">
+            @foreach($activeSpecialties as $specialty)
+                <label class="checkbox-inline" style="font-size: 14pt; padding-top: 10px;">
+                    <input onchange="redrawTimeLine();" type="checkbox" name="enabledSpecialties[]" value="{{ $specialty->specialty }}" checked> {{ $specialty->specialty }}
+                </label>
+            @endforeach
+        </div>
     </form>
 </div>
 <div id="patientTimeLine"></div>
