@@ -2,17 +2,9 @@
 
 ## Installation
 
-run `composer create-project laravel/laravel timeline "5.1.*"`
+run `git clone git@github.com:alexpotter/dissertation.alexpotter.me.git`
 
-run `composer update`
-
-run `git init`
-
-run `git remote add origin git@github.com:alexpotter/dissertation.alexpotter.me.git`
-
-^^ This command requires me to add your servers key to my repository. For security reasons. ^^
-
-run `git pull origin master`
+run `composer install`
 
 Open .env and alter the following to match your database credentials
 
@@ -22,6 +14,8 @@ Open .env and alter the following to match your database credentials
     DB_PASSWORD=secret
 
 run `php artisan migrate`
+
+This is the optimal method to avoid composer issues.
 
 ## Laravel PHP Framework
 
