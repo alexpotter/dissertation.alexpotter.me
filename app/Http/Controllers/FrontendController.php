@@ -89,11 +89,10 @@ class FrontendController extends Controller
      */
     public function getEvent(Request $request)
     {
-        $event = new Event();
-        $response = $event->getEvent($request->input('id'));
-
-        return response(json_encode($response['responseBody']), $response['status'])
-            ->header('Content-Type', 'application/json');
+        return response(json_encode([
+            'data' => Event::where('UNIQUE_ID', $request->input('id'))->first(),
+            'error' => 'Not fully functional'
+        ]), 400)->header('Content-Type', 'application/json');
     }
 
     /**
