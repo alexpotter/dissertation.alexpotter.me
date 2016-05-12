@@ -275,6 +275,9 @@
     </form>
 </div>
 <div id="patientTimeLine"></div>
+<div class="row">
+    <p style="text-align: center; padding-top: 20px">Project by Alex Potter</p>
+</div>
 {{--Modal--}}
 <button type="button" id="patientNotesHiddenButton" class="btn btn-primary" data-toggle="modal" data-target="#patientNotes" style="display: none;"></button>
 <button type="button" id="clusterEventsHiddenButton" class="btn btn-primary" data-toggle="modal" data-target="#clusterEvents" style="display: none;"></button>
