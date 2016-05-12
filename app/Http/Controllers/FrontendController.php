@@ -33,7 +33,7 @@ class FrontendController extends Controller
      */
     public function patient($id)
     {
-        $patient = new Patient($id);
+        $patient = Patient::where('BCI_ID', $id)->first();
         $eventSpecialties = new EventSpecialtyCode();
 
         try {
@@ -50,7 +50,8 @@ class FrontendController extends Controller
             'patientId' => $id,
             'patientEvents' => $patientEvents,
             'timeLineClusterMaxSettings' => TimeLineSettings::where('setting_code', 'cluster_max')->first(),
-            'activeSpecialties' => $eventSpecialties->getEnabledEventSpecialties()
+            'activeSpecialties' => $eventSpecialties->getEnabledEventSpecialties(),
+            'patient' => $patient,
         ));
     }
 

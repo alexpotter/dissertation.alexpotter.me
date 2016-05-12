@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="{{ url('assets/css/frontend/timeline.css') }}">
     <link href="{{ url('assets/css/app.css') }}" rel="stylesheet">
     <link href="{{ url('assets/css/pnotify.css') }}" rel='stylesheet'>
+    <link href="{{ url('assets/css/frontend/style.css') }}" rel='stylesheet'>
 
 
     <script type="text/javascript">
@@ -242,8 +243,21 @@
 </head>
 <body onload="drawVisualization();">
 <div id="patient_data">
-    <h1 style="text-align: center">Patient Data here</h1>
-    <h2 style="text-align: center">{{ $patientId }}</h2>
+    <h1 style="text-align: center">Patient ID: {{ $patientId }}</h1>
+    <div class="row" style="padding: 30px 15px 15px 15px">
+        <div class="col-md-4">
+            <p class="patient-info">Gender: @if($patient->GENDER == 'F') Female @else Male @endif</p>
+            <p class="patient-info">Diseased: {{ $patient->DECEASED_FLAG }}</p>
+        </div>
+        <div class="col-md-4">
+            <p class="patient-info">Year of birth: {{ $patient->YEAR_OF_BIRTH }}</p>
+            <p class="patient-info">Year of death: {{ $patient->YEAR_OF_DEATH }}</p>
+        </div>
+        <div class="col-md-4">
+            <p class="patient-info">Postcode district: {{ $patient->POSTCODE_DISTRICT }}</p>
+            <p class="patient-info">Local referal: {{ $patient->LOCAL_REFERRAL_FLAG }}</p>
+        </div>
+    </div>
 </div>
 <div class="col-xs-12" style="padding-bottom: 20px;">
     <form id="updateVisibleSpecialties">

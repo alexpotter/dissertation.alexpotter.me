@@ -3,42 +3,20 @@
 namespace PatientTimeLine;
 
 use Exception;
+use Illuminate\Database\Eloquent\Model;
 
-class Patient
+class Patient extends Model
 {
-    protected $id;
+    protected $table = 'SBCDS_PATIENT_MASTER';
+    public $timestamps = false;
     protected $events;
-
-    /**
-     * Patient constructor.
-     * @param $id
-     */
-    public function __construct($id)
-    {
-        $this->id = $id;
-        $this->events = new Events();
-    }
-
-    /**
-     * @param $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     public function getPatientEvents()
     {
+        $events = new Events();
+
         try {
-            return $this->events->prepareEventDataForTemplate($this->id);
+            return $events->prepareEventDataForTemplate($this->BCI_ID);
         }
         catch(Exception $e) {
             throw new Exception($e->getMessage());
