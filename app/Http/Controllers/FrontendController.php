@@ -37,7 +37,7 @@ class FrontendController extends Controller
         $eventSpecialties = new EventSpecialtyCode();
 
         try {
-            $patientEvents = $patient->getPatientEvents();
+            $patientEvents = $patient->getEvents();
         }
         catch (Exception $e) {
             return view('frontend/patient/notFound');
@@ -103,12 +103,9 @@ class FrontendController extends Controller
      */
     public function redrawTimeLine(Request $request)
     {
-        $patientEvents = new Events();
+        $patient = Patient::where('BCI_ID', $request->patientId)->first();
 
-        return response(json_encode($patientEvents->getEventsByEnabledSpecialtyCodes(
-            $request->patientId,
-            $request->input('enabledSpecialties')
-        )), 200)
+        return response(json_encode($patient->getEventsByEnabledSpecialtyCodes($request->input('enabledSpecialties'))), 200)
             ->header('Content-Type', 'application/json');
     }
 }
