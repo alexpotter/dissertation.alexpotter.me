@@ -12,19 +12,25 @@ class Patient extends Model
     protected $events;
 
     /**
+     * @return mixed
+     */
+    public function events()
+    {
+        return $this->events = Event::where('BCI_ID', $this->BCI_ID)
+            ->orderBy('EVENT_DATE', 'asc')
+            ->get();
+    }
+
+    /**
      * @return array
      * @throws Exception
      */
     public function getEvents()
     {
-        $this->events = Event::where('BCI_ID', $this->BCI_ID)
-            ->orderBy('EVENT_DATE', 'asc')
-            ->get();
-
         try {
             $patientData = array();
 
-            foreach ($this->events as $event)
+            foreach ($this->events() as $event)
             {
                 $clinicalEvent = new EventSpecialtyCode();
 
@@ -67,10 +73,6 @@ class Patient extends Model
      */
     public function getEventsByEnabledSpecialtyCodes($specialtyCodes)
     {
-        $this->events = Event::where('BCI_ID', $this->BCI_ID)
-            ->orderBy('EVENT_DATE', 'asc')
-            ->get();
-
         // Patient data
         $patientData = array();
         $counter = 0;
@@ -80,7 +82,7 @@ class Patient extends Model
             return null;
         }
 
-        foreach ($this->events as $event)
+        foreach ($this->events() as $event)
         {
             $content = ($event->EVENT_DETAIL != '') ? $event->EVENT_DETAIL : 'Unknown';
 
