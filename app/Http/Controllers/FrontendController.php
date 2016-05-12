@@ -37,6 +37,10 @@ class FrontendController extends Controller
         $eventSpecialties = new EventSpecialtyCode();
 
         try {
+            if ($patient == null)
+            {
+                return view('frontend/patient/notFound');
+            }
             $patientEvents = $patient->getEvents();
         }
         catch (Exception $e) {
