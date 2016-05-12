@@ -64,9 +64,9 @@ class FrontendController extends Controller
         // If many patients return many as JSON
         // If one patient return redirect
         // Else return 400
-        $patientExists = Event::where('BCI_ID', $request->patientId)->orderBy('EVENT_DATE', 'asc')->first();
+        $patient = Patient::where('BCI_ID', $request->patientId)->first();
 
-        if(!$patientExists)
+        if(!$patient)
         {
             return response(json_encode(array(
                 'status' => 'fail',
