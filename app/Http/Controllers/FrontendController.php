@@ -36,16 +36,12 @@ class FrontendController extends Controller
         $patient = Patient::where('BCI_ID', $id)->first();
         $eventSpecialties = new EventSpecialtyCode();
 
-        try {
-            if ($patient == null)
-            {
-                return view('frontend/patient/notFound');
-            }
-            $patientEvents = $patient->getEvents();
-        }
-        catch (Exception $e) {
+        if ($patient == null)
+        {
             return view('frontend/patient/notFound');
         }
+
+        $patientEvents = $patient->getEvents();
 
         // This will be used to return patient data
         // The id here will be inserted into the template to post to the above function
