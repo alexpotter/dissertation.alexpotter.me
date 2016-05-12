@@ -112,7 +112,7 @@
                     console.log("event " + row + " selected");
                     eventId = row;
 
-                    var data = timeline.getData(row).Gf[row].c;
+                    var data = timeline.getData(row).Nf[row].c;
                     uniqueId = data[5]['v'];
                     $('#patientNotesHiddenButton').trigger('click');
                 }
